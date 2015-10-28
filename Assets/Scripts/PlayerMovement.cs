@@ -82,7 +82,8 @@ public class PlayerMovement : MonoBehaviour
             
             if (c.tag == "Alpaca")
             {
-                // call alpaca's method
+				AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
+				alpaca.MoveTowardTarget(gameObject);
             }
         }
     }
