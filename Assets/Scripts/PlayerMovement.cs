@@ -46,8 +46,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // get input and call the Move method
-        float h = Input.GetAxis("Horizontal") * turningSpeed * Time.deltaTime;
-        float v = Input.GetAxis("Vertical") * movementSpeed * Time.deltaTime;
+        float h = Input.GetAxisRaw("Horizontal") * turningSpeed * Time.deltaTime;
+        float v = Input.GetAxisRaw("Vertical") * movementSpeed * Time.deltaTime;
         Move(h, v);
     }
 
