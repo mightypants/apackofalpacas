@@ -24,7 +24,7 @@ public class AlpacaMovement : MonoBehaviour
             
             if (x == targetx && z == targetz)
             {
-                nav.SetDestination(this.transform.position);
+                nav.Stop();
                 isMoving = false;
             }    
             else
@@ -38,5 +38,6 @@ public class AlpacaMovement : MonoBehaviour
     {
         target = obj.transform;
         isMoving = true;
+        nav.Resume();
     }
 }
