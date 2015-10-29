@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 06b81b5fa7e8b48e5b8ad6d7a74f8e48
 folderAsset: yes
 timeCreated: 1445738902
+=======
+guid: 11c4869b6eb394810ad2612ad6a59c98
+folderAsset: yes
+timeCreated: 1445804518
+>>>>>>> switch_door_scripts
 licenseType: Free
 DefaultImporter:
   userData: 
