@@ -2220,10 +2220,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 8
   turnSpeed: 10
-  jumpSpeed: 2
+  jumpSpeed: 1.5
   fluteReach: 100
   cameraTransform: {fileID: 1413724606}
-  gravity: 12
+  gravity: 5
 --- !u!143 &1526244591
 CharacterController:
   m_ObjectHideFlags: 0
