@@ -9,16 +9,16 @@ public class PlayerMovement : MonoBehaviour
     public float jumpSpeed = 5;
     public float fluteReach = 100;
     public Transform cameraTransform;
-	public float gravity = 9.8f;
+    public float gravity = 9.8f;
     
     private CharacterController characterController;
     private FMOD.Studio.EventInstance fluteCall1; 
-	private float vertSpeed;
+    private float vertSpeed;
     
     void Start()
     {
         //set up references
-		characterController = GetComponent<CharacterController>();
+        characterController = GetComponent<CharacterController>();
         fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1"); 
     }
     
@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
         {
             // start the flute sound effect if key just pressed
             PlayFlute(true);
-    
         }
         else if (Input.GetKey(KeyCode.Q))
         {
@@ -41,55 +40,49 @@ public class PlayerMovement : MonoBehaviour
             // stop sound effect if released
             fluteCall1.stop(STOP_MODE.ALLOWFADEOUT);
         }
-
-		// get input and call the Move and Turn methods
-		float h = Input.GetAxisRaw("Horizontal");
-		float v = Input.GetAxisRaw("Vertical");
-		Move(h, v);
-		
-		if (h != 0 || v != 0)
-		{
-			Turn(h, v);
-		}
-    }
-    
-    void FixedUpdate()
-    {
         
+        // get input and call the Move and Turn methods
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
+        Move(h, v);
+        
+        if (h != 0 || v != 0)
+        {
+        	Turn(h, v);
+        }
     }
-    
     
     void Move(float h, float v)
     {
         // player movement is relative to the camera
-		Vector3 forward = cameraTransform.forward.normalized;
+        Vector3 forward = cameraTransform.forward.normalized;
         Vector3 movement = (h * cameraTransform.right +  v * forward).normalized;
-
-		//vertSpeed = 0;
-
-		if (characterController.isGrounded)
-		{
-			// jump
-			if (Input.GetKeyDown(KeyCode.Space))
-			{
-				vertSpeed = jumpSpeed;
-			}
-		}
         
-		vertSpeed -= gravity * Time.deltaTime;
-		movement.y = vertSpeed;
-		characterController.Move(movement * movementSpeed * Time.deltaTime);
-            
+        //vertSpeed = 0;
+        
+        if (characterController.isGrounded)
+        {
+            // jump
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+            	vertSpeed = jumpSpeed;
+            }
+        }
+        
+        vertSpeed -= gravity * Time.deltaTime;
+        movement.y = vertSpeed;
+        characterController.Move(movement * movementSpeed * Time.deltaTime);
+    
     }
-
-	void Turn(float h, float v)
-	{
-
-		Vector3 relativePos = cameraTransform.TransformDirection(new Vector3(h, 0f, v));
-		relativePos.y = 0.0f;
-		Quaternion rotation = Quaternion.LookRotation(relativePos);
-		transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
-	}
+    
+    void Turn(float h, float v)
+    {
+    
+    	Vector3 relativePos = cameraTransform.TransformDirection(new Vector3(h, 0f, v));
+    	relativePos.y = 0.0f;
+    	Quaternion rotation = Quaternion.LookRotation(relativePos);
+    	transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
+    }
     
     void PlayFlute(bool keyDown)
     {
