@@ -6,14 +6,14 @@ public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed = 10;
     public float turnSpeed = 60;
-    public float jumpForce = 5;
+    public float jumpSpeed = 5;
     public float fluteReach = 100;
     public Transform cameraTransform;
-    public float groundCheckDistance;
+	public float gravity = 9.8f;
     
     private CharacterController characterController;
     private FMOD.Studio.EventInstance fluteCall1; 
-    private bool isGrounded;
+	private float vertSpeed;
     
     void Start()
     {
@@ -41,41 +41,43 @@ public class PlayerMovement : MonoBehaviour
             // stop sound effect if released
             fluteCall1.stop(STOP_MODE.ALLOWFADEOUT);
         }
+
+		// get input and call the Move and Turn methods
+		float h = Input.GetAxisRaw("Horizontal");
+		float v = Input.GetAxisRaw("Vertical");
+		Move(h, v);
+		
+		if (h != 0 || v != 0)
+		{
+			Turn(h, v);
+		}
     }
     
     void FixedUpdate()
     {
-        // get input and call the Move method
-        float h = Input.GetAxisRaw("Horizontal");
-        float v = Input.GetAxisRaw("Vertical");
-        CheckGroundStatus();
-        Move(h, v);
-		Turn(h, v);
-
+        
     }
     
     
     void Move(float h, float v)
     {
+        // player movement is relative to the camera
+		Vector3 forward = cameraTransform.forward.normalized;
+        Vector3 movement = (h * cameraTransform.right +  v * forward).normalized;
 
-        Vector3 input = new Vector3(h, 0.0f, v).normalized;
-        Debug.DrawRay(transform.position, input * 3, Color.blue);
+		//vertSpeed = 0;
 
-
-        //transform.rotation = Quaternion.LookRotation(input);
-        Vector3 forward = cameraTransform.forward.normalized;
-        Vector3 movement = h * cameraTransform.right +  v * forward;
-		movement.y = 0.0f;
-
-
-    
-        // jump
-//        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-//        {
-//            playerRigidBody.AddForce(Vector3.up * jumpForce);
-//        }
-    
-		//transform.Translate(movement * movementSpeed * Time.deltaTime);
+		if (characterController.isGrounded)
+		{
+			// jump
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				vertSpeed = jumpSpeed;
+			}
+		}
+        
+		vertSpeed -= gravity * Time.deltaTime;
+		movement.y = vertSpeed;
 		characterController.Move(movement * movementSpeed * Time.deltaTime);
             
     }
@@ -109,22 +111,6 @@ public class PlayerMovement : MonoBehaviour
                 AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
                 alpaca.MoveTowardTarget(gameObject);
             }
-        }
-    }
-    
-    void CheckGroundStatus()
-    {
-        RaycastHit hitInfo;
-    
-        Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * .3f));
-    
-        if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, groundCheckDistance))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
         }
     }
 }
