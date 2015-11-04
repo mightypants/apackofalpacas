@@ -6,23 +6,26 @@ public class AlpacaMovement : MonoBehaviour
     Transform target;
     NavMeshAgent nav;
     bool isMoving;
-    
+    float x;
+    float z;
     void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
         isMoving = false;
+        x = this.transform.position.x;
+        z = this.transform.position.z;
     }
     
     void Update()
     {
         if (isMoving)
         {
-            float x = this.transform.position.x;
-            float z = this.transform.position.z;
+             x = this.transform.position.x;
+             z = this.transform.position.z;
             float targetx = target.position.x;
             float targetz = target.position.z;
             
-            if (x == targetx && z == targetz)
+            if (x <= targetx + 1 && x >= targetx -1 && z <= targetz + 1 && z >= targetz -1 )
             {
                 nav.Stop();
                 isMoving = false;
