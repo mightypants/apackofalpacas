@@ -5,31 +5,30 @@ using FMOD.Studio;
 public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed = 10;
-    public float turningSpeed = 60;
-    public float jumpForce = 5;
+    public float turnSpeed = 60;
+    public float jumpSpeed = 5;
     public float fluteReach = 100;
-
-    private Rigidbody playerRigidBody;
+    public Transform cameraTransform;
+    public float gravity = 9.8f;
+    
+    private CharacterController characterController;
     private FMOD.Studio.EventInstance fluteCall1; 
-    private FMOD.Studio.ParameterInstance sustainingFlute;
-
+    private float vertSpeed;
+    
     void Start()
     {
         //set up references
-        playerRigidBody = GetComponent<Rigidbody>();
+        characterController = GetComponent<CharacterController>();
         fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1"); 
-        fluteCall1.getParameter("sustaining", out sustainingFlute);
-        sustainingFlute.setValue(0);
     }
-
-
+    
+    
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
             // start the flute sound effect if key just pressed
             PlayFlute(true);
-
         }
         else if (Input.GetKey(KeyCode.Q))
         {
@@ -41,49 +40,69 @@ public class PlayerMovement : MonoBehaviour
             // stop sound effect if released
             fluteCall1.stop(STOP_MODE.ALLOWFADEOUT);
         }
-    }
-
-    void FixedUpdate()
-    {
-        // get input and call the Move method
-        float h = Input.GetAxisRaw("Horizontal") * turningSpeed * Time.deltaTime;
-        float v = Input.GetAxisRaw("Vertical") * movementSpeed * Time.deltaTime;
+        
+        // get input and call the Move and Turn methods
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
         Move(h, v);
+        
+        if (h != 0 || v != 0)
+        {
+        	Turn(h, v);
+        }
     }
-
-
+    
     void Move(float h, float v)
     {
-        // jump
-        if (Input.GetKeyDown(KeyCode.Space))
+        // player movement is relative to the camera
+        Vector3 forward = cameraTransform.forward.normalized;
+        Vector3 movement = (h * cameraTransform.right +  v * forward).normalized;
+        
+        //vertSpeed = 0;
+        
+        if (characterController.isGrounded)
         {
-            playerRigidBody.AddForce(Vector3.up * jumpForce);
+            // jump
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+            	vertSpeed = jumpSpeed;
+            }
         }
         
-        //move
-        transform.Rotate(0, h, 0);
-        transform.Translate(0, 0, v);
+        vertSpeed -= gravity * Time.deltaTime;
+        movement.y = vertSpeed;
+        characterController.Move(movement * movementSpeed * Time.deltaTime);
+    
     }
-
+    
+    void Turn(float h, float v)
+    {
+    
+    	Vector3 relativePos = cameraTransform.TransformDirection(new Vector3(h, 0f, v));
+    	relativePos.y = 0.0f;
+    	Quaternion rotation = Quaternion.LookRotation(relativePos);
+    	transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
+    }
+    
     void PlayFlute(bool keyDown)
     {
         // set the position of the sound effect to be the player's position
         var attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
         fluteCall1.set3DAttributes(attributes);
-
+        
         if (keyDown)
         {
             fluteCall1.start();
         }
-
+        
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, fluteReach);
         
         foreach(Collider c in hitColliders){
             
             if (c.tag == "Alpaca")
             {
-				AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
-				alpaca.MoveTowardTarget(gameObject);
+                AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
+                alpaca.MoveTowardTarget(gameObject);
             }
         }
     }
