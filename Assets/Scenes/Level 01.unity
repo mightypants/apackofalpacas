@@ -1691,8 +1691,6 @@ MonoBehaviour:
   target: {fileID: 1526244587}
   lookAngleOffset: 2.5
   rotateSpeed: 2
-  distanceAway: 0
-  distanceUp: 0
 --- !u!4 &1426815731 stripped
 Transform:
   m_PrefabParentObject: {fileID: 495110, guid: 620af0b037b29564495729a6bfc87299, type: 2}
@@ -1960,8 +1958,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10021fff09cf480fbaff396b692c007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  turningSpeed: 10
+  movementSpeed: 8
+  turnSpeed: 10
   jumpForce: 300
   fluteReach: 100
   cameraTransform: {fileID: 1413724606}
@@ -1979,21 +1977,23 @@ CapsuleCollider:
   m_Height: 3
   m_Direction: 1
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!54 &1526244591
-Rigidbody:
+--- !u!143 &1526244591
+CharacterController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1526244587}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: .0500000007
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Height: 2
+  m_Radius: .5
+  m_SlopeLimit: 45
+  m_StepOffset: .300000012
+  m_SkinWidth: .0799999982
+  m_MinMoveDistance: .00100000005
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1529924489
 GameObject:
   m_ObjectHideFlags: 0

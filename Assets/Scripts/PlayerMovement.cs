@@ -5,20 +5,20 @@ using FMOD.Studio;
 public class PlayerMovement : MonoBehaviour
 {
     public float movementSpeed = 10;
-    public float turningSpeed = 60;
+    public float turnSpeed = 60;
     public float jumpForce = 5;
     public float fluteReach = 100;
     public Transform cameraTransform;
     public float groundCheckDistance;
     
-    private Rigidbody playerRigidBody;
+    private CharacterController characterController;
     private FMOD.Studio.EventInstance fluteCall1; 
     private bool isGrounded;
     
     void Start()
     {
         //set up references
-        playerRigidBody = GetComponent<Rigidbody>();
+		characterController = GetComponent<CharacterController>();
         fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1"); 
     }
     
@@ -46,10 +46,12 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         // get input and call the Move method
-        float h = Input.GetAxisRaw("Horizontal") * movementSpeed * Time.deltaTime;
-        float v = Input.GetAxisRaw("Vertical") * movementSpeed * Time.deltaTime;
+        float h = Input.GetAxisRaw("Horizontal");
+        float v = Input.GetAxisRaw("Vertical");
         CheckGroundStatus();
         Move(h, v);
+		Turn(h, v);
+
     }
     
     
@@ -61,22 +63,31 @@ public class PlayerMovement : MonoBehaviour
 
 
         //transform.rotation = Quaternion.LookRotation(input);
-        Vector3 forward = Vector3.Scale(cameraTransform.forward, new Vector3(1, 0, 1)).normalized;
+        Vector3 forward = cameraTransform.forward.normalized;
         Vector3 movement = h * cameraTransform.right +  v * forward;
-   
-        Debug.Log(movement);
+		movement.y = 0.0f;
+
 
     
         // jump
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
-        {
-            playerRigidBody.AddForce(Vector3.up * jumpForce);
-        }
+//        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+//        {
+//            playerRigidBody.AddForce(Vector3.up * jumpForce);
+//        }
     
-        transform.Translate(movement);
-
+		//transform.Translate(movement * movementSpeed * Time.deltaTime);
+		characterController.Move(movement * movementSpeed * Time.deltaTime);
             
     }
+
+	void Turn(float h, float v)
+	{
+
+		Vector3 relativePos = cameraTransform.TransformDirection(new Vector3(h, 0f, v));
+		relativePos.y = 0.0f;
+		Quaternion rotation = Quaternion.LookRotation(relativePos);
+		transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
+	}
     
     void PlayFlute(bool keyDown)
     {
