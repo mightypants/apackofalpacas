@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             // start the flute sound effect if key just pressed
