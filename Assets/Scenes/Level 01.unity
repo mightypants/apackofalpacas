@@ -1817,7 +1817,7 @@ Transform:
   - {fileID: 1846849635}
   - {fileID: 382755406}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!1 &1413724601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1909,7 +1909,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!114 &1413724607
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2613,7 +2613,7 @@ Transform:
   - {fileID: 1465439120}
   - {fileID: 159438411}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
 --- !u!111 &2067826413
 Animation:
   m_ObjectHideFlags: 0
@@ -2748,6 +2748,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   switchTarget: {fileID: 2067826411}
+  switchTargetAudio: event:/sfx/environment/puzzlepiece/cageLift
   activeTexture: {fileID: 2800000, guid: 6a229ecd45c1542119598f0ed8b8b669, type: 3}
   defaultTexture: {fileID: 2800000, guid: 95977b01eaa994e908ac6e3389324aee, type: 3}
   requiredAlpacas: 1
@@ -2824,7 +2825,7 @@ Transform:
   m_LocalScale: {x: 3, y: .200000003, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
 --- !u!114 &2144534459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2838,6 +2839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   switchTarget: {fileID: 418728925}
+  switchTargetAudio: event:/sfx/environment/puzzlepiece/slidingStoneDoor
   activeTexture: {fileID: 2800000, guid: 6a229ecd45c1542119598f0ed8b8b669, type: 3}
   defaultTexture: {fileID: 2800000, guid: 95977b01eaa994e908ac6e3389324aee, type: 3}
   requiredAlpacas: 2
