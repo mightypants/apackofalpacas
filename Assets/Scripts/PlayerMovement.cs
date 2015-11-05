@@ -26,17 +26,17 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Q))
+		if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Flute1"))
         {
             // start the flute sound effect if key just pressed
             PlayFlute(true);
         }
-        else if (Input.GetKey(KeyCode.Q))
+		else if (Input.GetKey(KeyCode.Q) || Input.GetButton("Flute1"))
         {
             // update the position of the sound effect if key is held
             PlayFlute(false);
         }
-        else if (Input.GetKeyUp(KeyCode.Q))
+		else if (Input.GetKeyUp(KeyCode.Q) || Input.GetButtonUp("Flute1"))
         {
             // stop sound effect if released
             fluteCall1.stop(STOP_MODE.ALLOWFADEOUT);
