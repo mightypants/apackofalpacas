@@ -25,14 +25,14 @@ public class Switch : MonoBehaviour
     
     void OnTriggerEnter(Collider c)
     {
-    	if (c.tag == characterObjectTag) 
-    	{  
-    		// as soon as the alpaca hits the trigger, it should lock on to the switch and stay put
-    		AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
-    		alpaca.MoveTowardTarget(gameObject);
+        if (c.tag == characterObjectTag) 
+        {  
+            // as soon as the alpaca hits the trigger, it should lock on to the switch and stay put
+            AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
+            alpaca.MoveTowardTarget(gameObject);
             alpacasPresent++;
             Debug.Log("An alpaca is present!! Number: " + alpacasPresent);
-    
+        
             if (alpacasPresent >= requiredAlpacas)
             {
                 FMOD_StudioSystem.instance.PlayOneShot(switchTargetAudio, switchTarget.transform.position);
@@ -43,27 +43,27 @@ public class Switch : MonoBehaviour
                     r.material.mainTexture = activeTexture;
                 }
             }
-    	} 
-    	else 
-    	{
-    		Debug.Log ("You aren't an Alpaca!!");//remove when final
-    	}
+        } 
+        else 
+        {
+        	Debug.Log ("You aren't an Alpaca!!");//remove when final
+        }
     }
     
     void OnTriggerExit(Collider c)
     {
-    	if (c.tag == characterObjectTag)
+        if (c.tag == characterObjectTag)
         {
             alpacasPresent--;
             Debug.Log(alpacasPresent);
         }
-    
+        
         if (alpacasPresent <= requiredAlpacas)
         {
-    		foreach (Renderer r in switchTargetActiveColor) 
-    		{
+            foreach (Renderer r in switchTargetActiveColor) 
+            {
                 r.material.mainTexture = defaultTexture;
-    		}
+            }
         }
     }
 }
