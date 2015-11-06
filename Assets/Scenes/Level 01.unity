@@ -1923,7 +1923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1526244587}
   lookAngleOffset: 2.5
-  rotateSpeed: 2
+  rotateSpeed: 1.10000002
 --- !u!1001 &1453956730
 Prefab:
   m_ObjectHideFlags: 0
@@ -2219,7 +2219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 8
-  turnSpeed: 10
+  turnSpeed: 7
   jumpSpeed: 1.5
   fluteReach: 100
   cameraTransform: {fileID: 1413724606}
