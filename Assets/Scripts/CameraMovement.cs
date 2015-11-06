@@ -18,7 +18,7 @@ public class CameraMovement : MonoBehaviour
     void LateUpdate ()
     {
         float currentAngle = transform.eulerAngles.y;
-        float horizontal = Input.GetAxisRaw("Horizontal2") * rotateSpeed;
+        float horizontal = Input.GetAxis("Horizontal2") * rotateSpeed;
         Quaternion rotation = Quaternion.Euler(0, currentAngle + horizontal, 0);
         transform.position = target.transform.position - (rotation * offset);
         

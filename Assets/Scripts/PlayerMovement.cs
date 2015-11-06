@@ -25,18 +25,17 @@ public class PlayerMovement : MonoBehaviour
     
     void Update()
     {
-
-		if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Flute1"))
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Flute1"))
         {
             // start the flute sound effect if key just pressed
             PlayFlute(true);
         }
-		else if (Input.GetKey(KeyCode.Q) || Input.GetButton("Flute1"))
+        else if (Input.GetKey(KeyCode.Q) || Input.GetButton("Flute1"))
         {
             // update the position of the sound effect if key is held
             PlayFlute(false);
         }
-		else if (Input.GetKeyUp(KeyCode.Q) || Input.GetButtonUp("Flute1"))
+        else if (Input.GetKeyUp(KeyCode.Q) || Input.GetButtonUp("Flute1"))
         {
             // stop sound effect if released
             fluteCall1.stop(STOP_MODE.ALLOWFADEOUT);
@@ -64,7 +63,7 @@ public class PlayerMovement : MonoBehaviour
         if (characterController.isGrounded)
         {
             // jump
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetAxis("Jump") > 0)
             {
             	vertSpeed = jumpSpeed;
             }
