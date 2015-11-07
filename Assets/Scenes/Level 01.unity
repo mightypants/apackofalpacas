@@ -347,6 +347,30 @@ Prefab:
       propertyPath: m_Name
       value: Alpaca
       objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: wanderRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 161058, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: wanderRadiusMultiplier
+      value: 1.10000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: wanderDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: commandSustain
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
   m_IsPrefabParent: 0
@@ -718,7 +742,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &418728926
 Transform:
   m_ObjectHideFlags: 0
@@ -904,6 +928,10 @@ Prefab:
     - target: {fileID: 135306, guid: 6ac0fd0893aa94bba98baf17ce777a91, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 135306, guid: 6ac0fd0893aa94bba98baf17ce777a91, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ac0fd0893aa94bba98baf17ce777a91, type: 2}
@@ -1091,7 +1119,35 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 470868, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: wanderRadius
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 19580842, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: m_Speed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: wanderRadiusMultiplier
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: wanderDelay
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: commandSustain
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11441938, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
+      propertyPath: wanderRadiusOffset
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f23bb8e89d9c4c3a98d51d0655624d9, type: 2}
@@ -1284,6 +1340,10 @@ Prefab:
     - target: {fileID: 180826, guid: 596230f0f45df42e8ab570de71edaba3, type: 2}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 180826, guid: 596230f0f45df42e8ab570de71edaba3, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 596230f0f45df42e8ab570de71edaba3, type: 2}
@@ -2148,7 +2208,7 @@ MonoBehaviour:
   movementSpeed: 8
   turnSpeed: 7
   jumpSpeed: 1.5
-  fluteReach: 100
+  fluteReach: 7
   cameraTransform: {fileID: 1413724606}
   gravity: 5
 --- !u!143 &1526244591
@@ -2740,7 +2800,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2144534458
 Transform:
   m_ObjectHideFlags: 0
