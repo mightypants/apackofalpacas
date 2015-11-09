@@ -16,9 +16,11 @@ public class FollowMovement : MonoBehaviour
 	
 	void Update ()
 	{
+
+
 		if (Input.GetKey(KeyCode.E))
 		{
-		nav.SetDestination (player.position);
+		nav.SetDestination(player.position);
 		}
 		else
 		{
