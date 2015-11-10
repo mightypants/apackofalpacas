@@ -11,18 +11,13 @@ public class AlpacaMovement : MonoBehaviour
     Vector3 targetPos;                      // the current target position; this is an arbitrary position while wandering, tied to a game object when called by the player, for example
     NavMeshAgent nav;                       // the alpaca's nav mesh agent
     Vector3 wanderOrigin;                   // the temporary origin point arount which the alpaca will wander
-    float x;
-    float z;
+    bool isSummoned;
 
-
-    // when wandering, alpaca should stay within a certain radius, but this area should be reset after being moved by player
+    // TODO: wander origin should be further from switch after use
 
     void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
-        x = this.transform.position.x;
-        z = this.transform.position.z;
-
         wanderOrigin = this.transform.position;
         SetRandomDestination();
     }
@@ -31,21 +26,24 @@ public class AlpacaMovement : MonoBehaviour
     {
         Debug.DrawRay(wanderOrigin, Vector3.up, Color.blue);
 
-        x = this.transform.position.x;
-        z = this.transform.position.z;
+        float x = this.transform.position.x;
+        float z = this.transform.position.z;
         float targetx = targetPos.x;
         float targetz = targetPos.z;
 
-        // if alpaca is within 1 unit of target, pause movement before setting the next target location
-        if (x <= targetx + 1 && x >= targetx -1 && z <= targetz + 1 && z >= targetz -1 )
+        if (isSummoned)
         {
-            StartCoroutine(DelayWander(wanderDelay));
-        }
-        else if (targetObj != null)
-        {
-            // update the target position if the target is game object, as it may have moved (usually when the target is the player)
+            // update the target position if the target is a game object, as it may have moved (usually when the target is the player)
             targetPos = targetObj.position;
             nav.SetDestination(targetPos);
+        }
+        else 
+        {
+            // if alpaca has arrived at its wander target, pause movement before setting the next target location
+            if (x == targetx && z == targetz )
+            {
+                StartCoroutine(DelayWander(wanderDelay));
+            }
         }
     }
     
@@ -55,24 +53,33 @@ public class AlpacaMovement : MonoBehaviour
         targetObj = obj.transform;
         targetPos = targetObj.position;
         nav.SetDestination(targetPos);
+        isSummoned = true;
         nav.Resume();
 
         // continue following player for a set amount of time before resuming wandering
-        yield return new WaitForSeconds(commandSustain);
+        yield return new WaitForSeconds(commandSustain + Random.value * 3);
+
+        // reset wander origin so the alpaca doesn't return to a previous origin, which may be very far away
         wanderOrigin = this.transform.position;
-        StartCoroutine(DelayWander(wanderDelay));
+
+        isSummoned = false;
+        SetRandomDestination();
     }
 
     IEnumerator DelayWander(float delay)
     {
+        // stop all movement and set a new target
         nav.Stop();
         SetRandomDestination();
-        yield return new WaitForSeconds(delay);
+
+        // resume wander after a pause 
+        yield return new WaitForSeconds(delay + Random.value * 3);
         nav.Resume();
     }
 
     void SetRandomDestination()
     {
+         
         targetObj = null;
         targetPos = Random.insideUnitSphere * wanderRadiusMultiplier + wanderOrigin;
         nav.SetDestination(targetPos);
