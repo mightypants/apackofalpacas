@@ -97,9 +97,11 @@ public class PlayerMovement : MonoBehaviour
             Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, fluteReach);
             
             foreach(Collider c in hitColliders)
-                {
+            {
                 
-                if (c.tag == "Alpaca")
+                AlpacaMovement alpacaMovement = c.gameObject.GetComponent<AlpacaMovement>();
+
+                if (c.tag == "Alpaca" && !alpacaMovement.isSummoned)
                 {
                     AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
                     StartCoroutine(alpaca.MoveTowardTarget(gameObject));

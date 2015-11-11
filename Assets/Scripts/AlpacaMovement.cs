@@ -6,12 +6,13 @@ public class AlpacaMovement : MonoBehaviour
     public float wanderRadiusMultiplier;    // used to set the distance the alpaca will move from its origin while wandering
     public float wanderDelay;               // the length of time between alpaca's random movements
     public float commandSustain;            // the length of time for which the alpaca will obey the player's most recent command
+    public bool isSummoned;                 // whether the alpaca has been summoned to a particular target (vs. wandering)
 
     Transform targetObj;                    // the transform of the target used by the nav mesh agent
     Vector3 targetPos;                      // the current target position; this is an arbitrary position while wandering, tied to a game object when called by the player, for example
     NavMeshAgent nav;                       // the alpaca's nav mesh agent
     Vector3 wanderOrigin;                   // the temporary origin point arount which the alpaca will wander
-    bool isSummoned;
+
 
     // TODO: wander origin should be further from switch after use
 
@@ -42,7 +43,7 @@ public class AlpacaMovement : MonoBehaviour
             // if alpaca has arrived at its wander target, pause movement before setting the next target location
             if (x == targetx && z == targetz )
             {
-                StartCoroutine(DelayWander(wanderDelay));
+                SetRandomDestination();
             }
         }
     }
@@ -54,34 +55,40 @@ public class AlpacaMovement : MonoBehaviour
         targetPos = targetObj.position;
         nav.SetDestination(targetPos);
         isSummoned = true;
-        nav.Resume();
+
+        // we don't want the alpacas walking directly into the player, but other targets--switches, etc.--should allow this
+        if (targetObj.tag == "Player")
+        {
+            nav.stoppingDistance = 2.5f;
+        }
 
         // continue following player for a set amount of time before resuming wandering
         yield return new WaitForSeconds(commandSustain + Random.value * 3);
 
         // reset wander origin so the alpaca doesn't return to a previous origin, which may be very far away
         wanderOrigin = this.transform.position;
-
         isSummoned = false;
         SetRandomDestination();
     }
 
-    IEnumerator DelayWander(float delay)
-    {
-        // stop all movement and set a new target
-        nav.Stop();
-        SetRandomDestination();
-
-        // resume wander after a pause 
-        yield return new WaitForSeconds(delay + Random.value * 3);
-        nav.Resume();
-    }
+      // eventually would be good to have some pause between movements, but right now is too buggy
+//    IEnumerator DelayWander(float delay)
+//    {
+//        // stop all movement and set a new target
+//        nav.Stop();
+//        SetRandomDestination();
+//
+//        // resume wander after a pause 
+//        yield return new WaitForSeconds(delay + Random.value * 3);
+//        nav.Resume();
+//    }
 
     void SetRandomDestination()
     {
-         
+
         targetObj = null;
         targetPos = Random.insideUnitSphere * wanderRadiusMultiplier + wanderOrigin;
         nav.SetDestination(targetPos);
+        nav.stoppingDistance = 0f;
     }
 }
