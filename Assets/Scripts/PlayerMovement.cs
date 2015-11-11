@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
+using System.Collections;
 using FMOD.Studio;
 
 public class PlayerMovement : MonoBehaviour
@@ -12,36 +12,29 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = 9.8f;
     
     private CharacterController characterController;
-    private FMOD.Studio.EventInstance fluteCall1; 
+    private ParticleSystem characterParticles;
+    private EventInstance fluteCall1;
+    private float fluteCall1Length = 3.0f;
     private float vertSpeed;
+
     
     void Start()
     {
         //set up references
         characterController = GetComponent<CharacterController>();
+        //characterParticles = GameObject.Find("Player/Flute Radius").GetComponent<ParticleSystem>();
         fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1"); 
     }
     
     
     void Update()
     {
-
-		if (Input.GetKeyDown(KeyCode.Q) || Input.GetButtonDown("Flute1"))
+        if (Input.GetButtonDown("Flute1"))
         {
             // start the flute sound effect if key just pressed
-            PlayFlute(true);
+            StartCoroutine(PlayFlute());
         }
-		else if (Input.GetKey(KeyCode.Q) || Input.GetButton("Flute1"))
-        {
-            // update the position of the sound effect if key is held
-            PlayFlute(false);
-        }
-		else if (Input.GetKeyUp(KeyCode.Q) || Input.GetButtonUp("Flute1"))
-        {
-            // stop sound effect if released
-            fluteCall1.stop(STOP_MODE.ALLOWFADEOUT);
-        }
-        
+
         // get input and call the Move and Turn methods
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -64,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         if (characterController.isGrounded)
         {
             // jump
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetAxis("Jump") > 0)
             {
             	vertSpeed = jumpSpeed;
             }
@@ -73,38 +66,50 @@ public class PlayerMovement : MonoBehaviour
         vertSpeed -= gravity * Time.deltaTime;
         movement.y = vertSpeed;
         characterController.Move(movement * movementSpeed * Time.deltaTime);
-    
     }
     
     void Turn(float h, float v)
     {
-    
     	Vector3 relativePos = cameraTransform.TransformDirection(new Vector3(h, 0f, v));
     	relativePos.y = 0.0f;
     	Quaternion rotation = Quaternion.LookRotation(relativePos);
     	transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
     }
     
-    void PlayFlute(bool keyDown)
+    IEnumerator PlayFlute()
     {
         // set the position of the sound effect to be the player's position
         var attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
         fluteCall1.set3DAttributes(attributes);
-        
-        if (keyDown)
+        fluteCall1.start();
+
+        //characterParticles.Play(true);
+
+        float start = Time.time;
+        float time = start;
+
+        while (time <= start + fluteCall1Length)
         {
-            fluteCall1.start();
-        }
-        
-        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, fluteReach);
-        
-        foreach(Collider c in hitColliders){
+            // update the position of the sound as the player moves
+            attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
+            fluteCall1.set3DAttributes(attributes);
+
+            Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, fluteReach);
             
-            if (c.tag == "Alpaca")
+            foreach(Collider c in hitColliders)
             {
-                AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
-                alpaca.MoveTowardTarget(gameObject);
+                
+                AlpacaMovement alpacaMovement = c.gameObject.GetComponent<AlpacaMovement>();
+
+                if (c.tag == "Alpaca" && !alpacaMovement.isSummoned)
+                {
+                    AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
+                    StartCoroutine(alpaca.MoveTowardTarget(gameObject));
+                }
             }
+
+            time += Time.deltaTime;
+            yield return null;
         }
     }
 }
