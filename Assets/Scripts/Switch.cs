@@ -3,7 +3,6 @@ using System.Collections;
 
 public class Switch : MonoBehaviour 
 {
-    public GameObject player;                       // Currently player-- will be remapped to alpaca.
     public GameObject switchTarget;                 // what the switch object is connected to.
     public string switchTargetAudio;                // the name (including path) of the FMOD sound effect the target will play 
     public Texture activeTexture;                   // texture that is applied when switch activates game object
@@ -29,7 +28,7 @@ public class Switch : MonoBehaviour
         {  
             // as soon as the alpaca hits the trigger, it should lock on to the switch and stay put
             AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
-            alpaca.MoveTowardTarget(gameObject);
+            StartCoroutine(alpaca.MoveTowardTarget(gameObject));
             alpacasPresent++;
             Debug.Log("An alpaca is present!! Number: " + alpacasPresent);
         
