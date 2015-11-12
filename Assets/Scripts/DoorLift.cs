@@ -3,21 +3,21 @@ using System.Collections;
 
 public class DoorLift : MonoBehaviour {
 
-	public GameObject[] switches;
-	public float raiseHeight;
+    public GameObject[] switches;
+    public float raiseHeight;
     public int requiredSwitches;
 
-	private Vector3 openPosition;
+    private Vector3 openPosition;
     private Vector3 closedPosition;
 
-	
-	void Start () {
-	    openPosition = new Vector3(transform.position.x, transform.position.y + raiseHeight, transform.position.z);
+    
+    void Start () {
+        openPosition = new Vector3(transform.position.x, transform.position.y + raiseHeight, transform.position.z);
         closedPosition = transform.position;
-	}
+    }
 
-	void Update()
-	{
+    void Update()
+    {
         int currentActiveSwitches = 0;
 
         foreach (GameObject s in switches)
@@ -40,14 +40,14 @@ public class DoorLift : MonoBehaviour {
         }
     }
 
-	public IEnumerator RaiseDoor()
-	{
-		while (transform.position.y < openPosition.y)
-		{
-			transform.Translate(0, .1f, 0);
-			yield return null;
-		}
-	}
+    public IEnumerator RaiseDoor()
+    {
+        while (transform.position.y < openPosition.y)
+        {
+            transform.Translate(0, .1f, 0);
+            yield return null;
+        }
+    }
 
     public IEnumerator LowerDoor()
     {

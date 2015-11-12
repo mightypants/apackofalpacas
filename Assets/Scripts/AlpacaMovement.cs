@@ -24,7 +24,7 @@ public class AlpacaMovement : MonoBehaviour
         wanderOrigin = this.transform.position;
         SetRandomDestination();
 
-		isSummoned = false;
+        isSummoned = false;
 
         alpacaHum = FMOD_StudioSystem.instance.GetEvent("event:/sfx/alpaca/hum");
     }
@@ -58,7 +58,7 @@ public class AlpacaMovement : MonoBehaviour
     {
 
 
-		// set target to the object that called the method
+        // set target to the object that called the method
         targetObj = obj.transform;
         targetPos = targetObj.position;
         nav.SetDestination(targetPos);
@@ -69,10 +69,10 @@ public class AlpacaMovement : MonoBehaviour
         {
             nav.stoppingDistance = 2.5f;
         }
-		else 
-		{
-			nav.stoppingDistance = 0f;
-		}
+        else 
+        {
+            nav.stoppingDistance = 0f;
+        }
 
         // continue following player for a set amount of time before resuming wandering
         yield return new WaitForSeconds(commandSustain + Random.value * 3);
@@ -82,9 +82,9 @@ public class AlpacaMovement : MonoBehaviour
         isSummoned = false;
         SetRandomDestination();
 
-		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
-		alpacaHum.set3DAttributes(attributes);
-		alpacaHum.start();
+        var attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
+        alpacaHum.set3DAttributes(attributes);
+        alpacaHum.start();
         alpacaHum.release();
     }
 

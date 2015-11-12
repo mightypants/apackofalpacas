@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         
         if (h != 0 || v != 0)
         {
-        	Turn(h, v);
+            Turn(h, v);
         }
     }
     
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             // jump
             if (Input.GetAxis("Jump") > 0)
             {
-            	vertSpeed = jumpSpeed;
+                vertSpeed = jumpSpeed;
             }
         }
         
@@ -70,10 +70,10 @@ public class PlayerMovement : MonoBehaviour
     
     void Turn(float h, float v)
     {
-    	Vector3 relativePos = cameraTransform.TransformDirection(new Vector3(h, 0f, v));
-    	relativePos.y = 0.0f;
-    	Quaternion rotation = Quaternion.LookRotation(relativePos);
-    	transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
+        Vector3 relativePos = cameraTransform.TransformDirection(new Vector3(h, 0f, v));
+        relativePos.y = 0.0f;
+        Quaternion rotation = Quaternion.LookRotation(relativePos);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
     }
     
     IEnumerator PlayFlute()

@@ -6,10 +6,10 @@ public class CameraMovement : MonoBehaviour
     public GameObject target;           // target the camera focuses on
     public float lookAngleOffset = 1;   // allows the target to be off-center in the camera's view
     public float rotateSpeed = 5;       // speed of the camera's rotation
-	public float zoomSpeed = 5;
+    public float zoomSpeed = 5;
 
     private Vector3 offset;             // distance between the camera and target
-	//private Vector3 lastDist;
+    //private Vector3 lastDist;
 
     void Start()
     {
@@ -19,16 +19,16 @@ public class CameraMovement : MonoBehaviour
 
     void LateUpdate()
     {
-		float h = Input.GetAxis("Horizontal2");
-		float v = Input.GetAxis("Vertical2");
-		float angle = transform.eulerAngles.y;
+        float h = Input.GetAxis("Horizontal2");
+        float v = Input.GetAxis("Vertical2");
+        float angle = transform.eulerAngles.y;
         
-		if (h >= 0.5f || h <= -0.5f )
-		{
-			angle += h * rotateSpeed;
-		}
+        if (h >= 0.5f || h <= -0.5f )
+        {
+            angle += h * rotateSpeed;
+        }
 
-		//lastDist += v * Vector3.forward * zoomSpeed;
+        //lastDist += v * Vector3.forward * zoomSpeed;
 
         Quaternion rotation = Quaternion.Euler(0, angle, 0);
         transform.position = target.transform.position - (rotation * offset);
@@ -42,7 +42,7 @@ public class CameraMovement : MonoBehaviour
         RaycastHit wallHit;
         if (Physics.Raycast(wallLookRay, out wallHit, Vector3.Distance(this.transform.position, lookTarget)))
         {
-        	transform.position = wallHit.point;
+            transform.position = wallHit.point;
         }
     }
 }
