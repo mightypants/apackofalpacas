@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //set up references
         characterController = GetComponent<CharacterController>();
-        //characterParticles = GameObject.Find("Player/Flute Radius").GetComponent<ParticleSystem>();
+        characterParticles = GameObject.Find("Player/Flute Radius").GetComponent<ParticleSystem>();
         fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1"); 
     }
     
@@ -83,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
         fluteCall1.set3DAttributes(attributes);
         fluteCall1.start();
 
-        //characterParticles.Play(true);
+        characterParticles.Play(true);
 
         float start = Time.time;
         float time = start;

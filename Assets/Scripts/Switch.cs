@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿	using UnityEngine;
 using System.Collections;
 
 public class Switch : MonoBehaviour 
@@ -11,6 +11,7 @@ public class Switch : MonoBehaviour
     
     //private Animation switchTargetAnimation;        // animation for target of switch (door animation, cage animation, etc).   
     //private Renderer[] switchTargetActiveColor;     // attaches to the color of the object, changing it's active color.
+    private bool isActivated;
 	private DoorLift switchTargetDoorLift;     		// attaches to the color of the object, changing it's active color.
 	private string characterObjectTag = "Alpaca";   // tag switch searches for
     private int alpacasPresent;                     // the number of alpacas currently on the switch
@@ -37,8 +38,8 @@ public class Switch : MonoBehaviour
             if (alpacasPresent >= requiredAlpacas)
             {
                 FMOD_StudioSystem.instance.PlayOneShot(switchTargetAudio, switchTarget.transform.position);
-				StartCoroutine(switchTargetDoorLift.RaiseDoor());
-
+				//StartCoroutine(switchTargetDoorLift.RaiseDoor());
+                isActivated = true;
 
 				//switchTargetAnimation.Play();
                 
@@ -64,10 +65,16 @@ public class Switch : MonoBehaviour
         
         if (alpacasPresent <= requiredAlpacas)
         {
+            isActivated = false;
 //            foreach (Renderer r in switchTargetActiveColor) 
 //            {
 //                r.material.mainTexture = defaultTexture;
 //            }
         }
+    }
+
+    public bool IsActivated()
+    {
+        return this.isActivated;
     }
 }
