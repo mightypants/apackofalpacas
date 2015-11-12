@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 440660}
   - 33: {fileID: 3352276}
   - 23: {fileID: 2340144}
-  - 65: {fileID: 6536076}
   - 114: {fileID: 11442420}
+  - 135: {fileID: 13567638}
   m_Layer: 0
   m_Name: PressureSwitch
   m_TagString: Untagged
@@ -62,18 +62,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 107502}
   m_Mesh: {fileID: 4300000, guid: 9a10f2b9f1c4aab419d11d99271f2259, type: 3}
---- !u!65 &6536076
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 107502}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: .200000003, y: .200000003, z: .200000003}
-  m_Center: {x: 1.11758709e-08, y: .00285584014, z: -4.88013029e-07}
 --- !u!114 &11442420
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -88,6 +76,18 @@ MonoBehaviour:
   switchTarget: {fileID: 0}
   switchTargetAudio: event:/sfx/environment/puzzlePiece/slidingStoneDoor
   requiredAlpacas: 1
+--- !u!135 &13567638
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 107502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .0900000036
+  m_Center: {x: 1.11758709e-08, y: .00285584014, z: -4.88013029e-07}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

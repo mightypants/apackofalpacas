@@ -56,6 +56,8 @@ public class AlpacaMovement : MonoBehaviour
     
     public IEnumerator MoveTowardTarget(GameObject obj)
     {
+
+
 		// set target to the object that called the method
         targetObj = obj.transform;
         targetPos = targetObj.position;
@@ -67,6 +69,10 @@ public class AlpacaMovement : MonoBehaviour
         {
             nav.stoppingDistance = 2.5f;
         }
+		else 
+		{
+			nav.stoppingDistance = 0f;
+		}
 
         // continue following player for a set amount of time before resuming wandering
         yield return new WaitForSeconds(commandSustain + Random.value * 3);
@@ -96,7 +102,6 @@ public class AlpacaMovement : MonoBehaviour
 
     void SetRandomDestination()
     {
-
         targetObj = null;
         targetPos = Random.insideUnitSphere * wanderRadiusMultiplier + wanderOrigin;
         nav.SetDestination(targetPos);
