@@ -3,19 +3,60 @@ using System.Collections;
 
 public class DoorLift : MonoBehaviour {
 
-	public float raiseHeight;
-	private Vector3 targetPos;
-	
-	void Start () {
-		targetPos = new Vector3(transform.position.x, transform.position.y + raiseHeight, transform.position.z);
-	}
+    public GameObject[] switches;
+    public float raiseHeight;
+    public int requiredSwitches;
 
-	public IEnumerator RaiseDoor()
-	{
-		while (transform.position.y < targetPos.y)
-		{
-			transform.Translate(0, .1f, 0);
-			yield return null;
-		}
-	}
+    private Vector3 openPosition;
+    private Vector3 closedPosition;
+    public string doorAudio;                // the name (including path) of the FMOD sound effect the target will play 
+    
+    void Start () {
+        openPosition = new Vector3(transform.position.x, transform.position.y + raiseHeight, transform.position.z);
+        closedPosition = transform.position;
+    }
+
+    void Update()
+    {
+        int currentActiveSwitches = 0;
+
+        foreach (GameObject s in switches)
+        {
+            Switch switchAction = s.GetComponent<Switch>();
+
+            if (switchAction.IsActivated())
+            {
+                currentActiveSwitches++;
+            }
+        }
+
+        if (currentActiveSwitches >= requiredSwitches)
+        {
+            StartCoroutine(RaiseDoor());
+        }
+//        else 
+//        {
+//            StartCoroutine(LowerDoor());
+//        }
+    }
+
+    public IEnumerator RaiseDoor()
+    {
+        while (transform.position.y < openPosition.y)
+        {
+            transform.Translate(0, .1f, 0);
+            yield return null;
+        }
+    }
+
+    public IEnumerator LowerDoor()
+    {
+        while (transform.position.y > closedPosition.y)
+        {
+            transform.Translate(0, -0.1f, 0);
+            yield return null;
+        }
+    }
+
+
 }
