@@ -6,6 +6,8 @@ public class CameraMovement : MonoBehaviour
     public GameObject target;                   // target the camera focuses on
     public float targetHeight = 1.5f;           // the height, relative to the player, where the camera will point
     public float defaultTargetHeight = 1.5f;    // allows the player to snap back to the original height after moving around
+    public float maxTargetHeight = 5;
+    public float minTargetHeight = .5f;
     public float orbitSpeed = 5;                // speed of the camera's orbit around the player
     public float rotateSpeed = .5f;               // the rate of the camera's rotation around the x axis
 
@@ -41,10 +43,10 @@ public class CameraMovement : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, angle, 0);
         transform.position = target.transform.position - (rotation * offset);
 
-
         if (v >= 0.5f || v <= -0.5f )
         {
-            targetHeight += v * rotateSpeed;
+            //targetHeight += v * rotateSpeed;
+            targetHeight = Mathf.Clamp(targetHeight + v * rotateSpeed, minTargetHeight, maxTargetHeight);
         }
         
         // aim the camera just above the target game object so that the target is not directly centered in the screen

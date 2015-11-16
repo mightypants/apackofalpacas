@@ -10874,6 +10874,8 @@ MonoBehaviour:
   target: {fileID: 1274616716}
   targetHeight: 1.5
   defaultTargetHeight: 1.5
+  maxTargetHeight: 3.5
+  minTargetHeight: .5
   orbitSpeed: 3
   rotateSpeed: .25
 --- !u!1 &1536044781 stripped
