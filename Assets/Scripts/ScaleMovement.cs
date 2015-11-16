@@ -5,44 +5,39 @@ public class ScaleMovement : MonoBehaviour {
 
     public float speed = 3;
 
-	private int alpacasPresent;
+    private int alpacasPresent;
     private Vector3 balancedPosition;
     private Vector3 targetPosition;
 
-	void Start() {
+    void Start() {
         balancedPosition = this.transform.position;
 
-	}
-	
-	void Update() {
-        //Debug.Log(gameObject.name + "alpacasPresent: " + alpacasPresent);
-	}
+    }
+    
+    void Update() {
+
+    }
 
     void OnTriggerEnter(Collider c)
     {
-        Debug.Log("enter");
         if (c.tag == "Alpaca") 
         {  
-            // as soon as the alpaca hits the trigger, it should lock on to the switch and stay put
-//            AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
-//            StartCoroutine(alpaca.MoveTowardTarget(gameObject));
             alpacasPresent++;
         }
     }
 
-	void OnTriggerExit(Collider c)
-	{
-        Debug.Log("exit");
+    void OnTriggerExit(Collider c)
+    {
         if (c.tag == "Alpaca") 
         {  
             alpacasPresent--;
         }
-	}
+    }
 
-	public int GetWeight()
-	{
-		return alpacasPresent;
-	}
+    public int GetWeight()
+    {
+        return alpacasPresent;
+    }
 
     public IEnumerator AdjustPosition(int movement)
     {
