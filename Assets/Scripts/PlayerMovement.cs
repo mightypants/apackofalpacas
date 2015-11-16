@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         if (characterController.isGrounded)
         {
             // jump
-            if (Input.GetAxis("Jump") > 0)
+            if (Input.GetButtonDown("Jump"))
             {
                 vertSpeed = jumpSpeed;
             }

@@ -11,7 +11,6 @@ public class ScaleMovement : MonoBehaviour {
 
     void Start() {
         balancedPosition = this.transform.position;
-
     }
     
     void Update() {
@@ -24,6 +23,7 @@ public class ScaleMovement : MonoBehaviour {
         {  
             alpacasPresent++;
         }
+
     }
 
     void OnTriggerExit(Collider c)
