@@ -52,8 +52,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 forward = cameraTransform.forward.normalized;
         Vector3 movement = (h * cameraTransform.right +  v * forward).normalized;
         
-        //vertSpeed = 0;
-        
         if (characterController.isGrounded)
         {
             // jump
@@ -98,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             
             foreach(Collider c in hitColliders)
             {
-                
+
                 AlpacaMovement alpacaMovement = c.gameObject.GetComponent<AlpacaMovement>();
 
                 if (c.tag == "Alpaca" && !alpacaMovement.isSummoned)

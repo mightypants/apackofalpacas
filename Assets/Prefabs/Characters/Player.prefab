@@ -24,7 +24,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 455908}
   - 143: {fileID: 14310048}
-  - 114: {fileID: 11463968}
   - 114: {fileID: 11491718}
   m_Layer: 0
   m_Name: Player
@@ -599,23 +598,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131340}
   m_Mesh: {fileID: 4300000, guid: 3cc58286e660940be89786a275d6d72b, type: 3}
---- !u!114 &11463968
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 106198}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10021fff09cf480fbaff396b692c007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 8
-  turnSpeed: 10
-  jumpSpeed: 3
-  fluteReach: 15
-  cameraTransform: {fileID: 0}
-  gravity: 10
 --- !u!114 &11491718
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -630,7 +612,7 @@ MonoBehaviour:
   movementSpeed: 10
   turnSpeed: 60
   jumpSpeed: 2
-  fluteReach: 100
+  fluteReach: 10
   cameraTransform: {fileID: 0}
   gravity: 7
 --- !u!143 &14310048

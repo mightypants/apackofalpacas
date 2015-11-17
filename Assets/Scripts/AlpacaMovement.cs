@@ -15,6 +15,7 @@ public class AlpacaMovement : MonoBehaviour
     Vector3 wanderOrigin;                           // the temporary origin point arount which the alpaca will wander
     private ParticleSystem alpacaParticles;
     private EventInstance alpacaHum;
+    private bool isSummonable;
 
 
     // TODO: wander origin should be further from switch after use
@@ -26,20 +27,19 @@ public class AlpacaMovement : MonoBehaviour
         wanderOrigin = this.transform.position;
         SetRandomDestination();
         isSummoned = false;
+        isSummonable = true;
 
         alpacaHum = FMOD_StudioSystem.instance.GetEvent("event:/sfx/alpaca/hum");
     }
     
     void Update()
     {
-        Debug.DrawRay(wanderOrigin, Vector3.up, Color.blue);
-
         float x = this.transform.position.x;
         float z = this.transform.position.z;
         float targetx = targetPos.x;
         float targetz = targetPos.z;
 
-        if (isSummoned)
+        if (isSummoned && nav.enabled)
         {
             // update the target position if the target is a game object, as it may have moved (usually when the target is the player)
             targetPos = targetObj.position;
@@ -57,13 +57,13 @@ public class AlpacaMovement : MonoBehaviour
     
     public IEnumerator MoveTowardTarget(GameObject obj)
     {
-
-
         // set target to the object that called the method
+        nav.enabled = true;
         targetObj = obj.transform;
         targetPos = targetObj.position;
         nav.SetDestination(targetPos);
         isSummoned = true;
+        alpacaParticles.Play(true);
 
         // we don't want the alpacas walking directly into the player, but other targets--switches, etc.--should allow this
         if (targetObj.tag == "Player")
@@ -74,8 +74,6 @@ public class AlpacaMovement : MonoBehaviour
         {
             nav.stoppingDistance = 0f;
         }
-
-        alpacaParticles.Play(true);
 
         // continue following player for a set amount of time before resuming wandering
         yield return new WaitForSeconds(commandSustain + Random.value * 3);
@@ -114,6 +112,20 @@ public class AlpacaMovement : MonoBehaviour
     public void ToggleNavAgent()
     {
         nav.enabled = !nav.enabled;
-        Debug.Log("nav toggled: " + nav.enabled);
+    }
+
+    public void DisableSummon()
+    {
+        isSummonable = false;
+    }
+
+    public void EnableSummon()
+    {
+        isSummonable = true;
+    }
+
+    public bool GetSummonStatus()
+    {
+        return isSummonable;
     }
 }
