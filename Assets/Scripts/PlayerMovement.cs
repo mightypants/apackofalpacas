@@ -49,10 +49,9 @@ public class PlayerMovement : MonoBehaviour
     void Move(float h, float v)
     {
         // player movement is relative to the camera
+		Debug.Log(gameObject.name);
         Vector3 forward = cameraTransform.forward.normalized;
         Vector3 movement = (h * cameraTransform.right +  v * forward).normalized;
-        
-        //vertSpeed = 0;
         
         if (characterController.isGrounded)
         {
@@ -98,13 +97,14 @@ public class PlayerMovement : MonoBehaviour
             
             foreach(Collider c in hitColliders)
             {
-                
-                AlpacaMovement alpacaMovement = c.gameObject.GetComponent<AlpacaMovement>();
-
-                if (c.tag == "Alpaca" && !alpacaMovement.isSummoned)
+                if (c.tag == "Alpaca")
                 {
-                    AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
-                    StartCoroutine(alpaca.MoveTowardTarget(gameObject));
+					AlpacaMovement alpacaMovement = c.gameObject.GetComponent<AlpacaMovement>();
+
+					if (!alpacaMovement.isSummoned)
+					{	
+						StartCoroutine(alpacaMovement.MoveTowardTarget(gameObject));
+					}
                 }
             }
 
