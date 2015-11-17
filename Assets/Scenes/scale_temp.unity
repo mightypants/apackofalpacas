@@ -124,14 +124,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
-    - target: {fileID: 5462364, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
-      propertyPath: m_Drag
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5462364, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
-      propertyPath: m_UseGravity
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
   m_IsPrefabParent: 0
@@ -560,23 +552,6 @@ GameObject:
 GameObject:
   m_PrefabParentObject: {fileID: 106198, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
   m_PrefabInternal: {fileID: 1954791121}
---- !u!114 &1709991726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1709991723}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e10021fff09cf480fbaff396b692c007, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 10
-  turnSpeed: 60
-  jumpSpeed: 2
-  fluteReach: 100
-  cameraTransform: {fileID: 1228252746}
-  gravity: 7
 --- !u!1 &1721912472 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 120308, guid: 9e877ff4a71a1494babff400b225dd92, type: 2}
@@ -887,10 +862,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 14310048, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
-      propertyPath: m_StepOffset
-      value: .200000003
-      objectReference: {fileID: 0}
+    - target: {fileID: 11491718, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 1228252746}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
   m_IsPrefabParent: 0
