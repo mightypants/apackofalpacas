@@ -1676,11 +1676,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11491718, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
       propertyPath: jumpSpeed
-      value: 1.5
+      value: 1.70000005
       objectReference: {fileID: 0}
     - target: {fileID: 106198, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 11491718, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
+      propertyPath: movementSpeed
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
