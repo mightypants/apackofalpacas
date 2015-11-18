@@ -4,6 +4,7 @@ using System.Collections;
 public class ScaleMovement : MonoBehaviour {
 
     public float speed = 3;
+    public float balancedHeight;
     
     private int alpacasPresent;
     private Vector3 balancedPosition;
@@ -11,12 +12,8 @@ public class ScaleMovement : MonoBehaviour {
     private ArrayList alpacas;
 
     void Start() {
-        balancedPosition = this.transform.position;
+        balancedPosition = new Vector3(this.transform.position.x, balancedHeight, this.transform.position.z);
         alpacas = new ArrayList();
-    }
-    
-    void Update() {
-
     }
 
     void OnTriggerEnter(Collider c)
@@ -44,27 +41,45 @@ public class ScaleMovement : MonoBehaviour {
 
     public IEnumerator AdjustPosition(int movement)
     {
-        foreach (GameObject a in alpacas)
+        if (alpacas.Count > 0)
         {
-            AlpacaMovement alpacaMovement = a.GetComponent<AlpacaMovement>();
-            alpacaMovement.ToggleNavAgent();
-            Debug.Log(a.name);
+            foreach (GameObject a in alpacas)
+            {
+                AlpacaMovement alpacaMovement = a.GetComponent<AlpacaMovement>();
+                alpacaMovement.ToggleNavAgent();
+                alpacaMovement.DisableSummon();
+            }
         }
 
         targetPosition = new Vector3(balancedPosition.x, balancedPosition.y + movement, balancedPosition.z);
+        bool movingUp = targetPosition.y - this.transform.position.y > 0 ? true : false;
 
-        while (this.transform.position.y > targetPosition.y + .1f)
+        // without this offset, the scale never gets to the target position exactly so the alpaca(s) never gets it's agent reenabled
+        float targetOffset;
+        targetOffset = 0.1f;
+
+        if (movingUp)
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.deltaTime * speed);
-            yield return null;
+            while (this.transform.position.y < targetPosition.y - targetOffset)
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.deltaTime * speed);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (this.transform.position.y > targetPosition.y + targetOffset)
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.deltaTime * speed);
+                yield return null;
+            }
         }
 
         foreach (GameObject a in alpacas)
         {
             AlpacaMovement alpacaMovement = a.GetComponent<AlpacaMovement>();
             alpacaMovement.ToggleNavAgent();
+            alpacaMovement.EnableSummon();
         }
     }
-
-
 }

@@ -353,7 +353,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.73999977, y: 4.51000023, z: 4.78999996}
+  m_LocalPosition: {x: 3.68000007, y: .610000014, z: 9.01000023}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 401002}
@@ -483,7 +483,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .5, y: 1, z: .75}
+  m_Size: {x: .300000012, y: .5, z: .600000024}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &11414750
 MonoBehaviour:
@@ -507,8 +507,8 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131088}
   m_Enabled: 1
-  m_Radius: .409999996
-  m_Speed: 1.5
+  m_Radius: .400000006
+  m_Speed: 2
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -516,7 +516,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1
+  m_Height: .800000012
   m_BaseOffset: .400000006
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
@@ -606,13 +606,13 @@ ParticleSystem:
       maxGradient:
         key0:
           serializedVersion: 2
-          rgba: 3539992575
+          rgba: 3758096383
         key1:
           serializedVersion: 2
-          rgba: 1677721599
+          rgba: 3724541951
         key2:
           serializedVersion: 2
-          rgba: 0
+          rgba: 1526726656
         key3:
           serializedVersion: 2
           rgba: 0
@@ -637,15 +637,15 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 65535
-        atime2: 0
+        atime1: 13107
+        atime2: 65535
         atime3: 0
         atime4: 0
         atime5: 0
         atime6: 0
         atime7: 0
         m_NumColorKeys: 2
-        m_NumAlphaKeys: 2
+        m_NumAlphaKeys: 3
       minGradient:
         key0:
           serializedVersion: 2
@@ -706,10 +706,10 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: 1
-          value: .356756747
-          inSlope: -1.26790559
-          outSlope: -1.26790559
+        - time: .99640286
+          value: .275675654
+          inSlope: -.0567057431
+          outSlope: -.0567057431
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
@@ -1576,9 +1576,9 @@ ParticleSystemRenderer:
   m_GameObject: {fileID: 118806}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_Materials:
-  - {fileID: 2100000, guid: 34e0a430b7833433fb1188a6f6656019, type: 2}
+  - {fileID: 2100000, guid: ef67e4c399e914763b26ec233952c173, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1

@@ -97,10 +97,10 @@ public class PlayerMovement : MonoBehaviour
             
             foreach(Collider c in hitColliders)
             {
-                if (c.tag == "Alpaca")
-                {
-					AlpacaMovement alpacaMovement = c.gameObject.GetComponent<AlpacaMovement>();
+                AlpacaMovement alpacaMovement = c.gameObject.GetComponent<AlpacaMovement>();
 
+                if (c.tag == "Alpaca" && !alpacaMovement.isSummoned)
+                {
 					if (!alpacaMovement.isSummoned)
 					{	
 						StartCoroutine(alpacaMovement.MoveTowardTarget(gameObject));
