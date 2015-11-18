@@ -609,9 +609,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e10021fff09cf480fbaff396b692c007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
+  movementSpeed: 7
   turnSpeed: 60
-  jumpSpeed: 1.5
+  jumpSpeed: 1.70000005
   fluteReach: 10
   cameraTransform: {fileID: 0}
   gravity: 5

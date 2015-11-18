@@ -12,6 +12,7 @@ public class AlpacaMovement : MonoBehaviour
     Transform targetObj;                            // the transform of the target used by the nav mesh agent
     Vector3 targetPos;                              // the current target position; this is an arbitrary position while wandering, tied to a game object when called by the player, for example
     NavMeshAgent nav;                               // the alpaca's nav mesh agent
+    bool isBound;                                   // whether or not the alpaca is locked to a puzzle piece
     Vector3 wanderOrigin;                           // the temporary origin point arount which the alpaca will wander
     private ParticleSystem alpacaParticles;
     private EventInstance alpacaHum;
@@ -74,6 +75,8 @@ public class AlpacaMovement : MonoBehaviour
         {
             nav.stoppingDistance = 0f;
         }
+
+        alpacaParticles.Play(true);
 
         // continue following player for a set amount of time before resuming wandering
         yield return new WaitForSeconds(commandSustain + Random.value * 3);
