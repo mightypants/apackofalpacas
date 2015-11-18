@@ -29,7 +29,7 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetButtonDown("CamReset"))
         {
             targetHeight = defaultTargetHeight;
-            angle = defaultAngle;
+            angle = target.transform.eulerAngles.y;
         }
 
         float h = Input.GetAxis("Horizontal2");

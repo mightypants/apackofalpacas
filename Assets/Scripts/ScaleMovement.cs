@@ -4,14 +4,17 @@ using System.Collections;
 public class ScaleMovement : MonoBehaviour {
 
     public float speed = 3;
-    public float balancedHeight;
+    public float balancedHeightOffset = 0;
+    public string movementAudio;
     
     private int alpacasPresent;
+    private float balancedHeight;
     private Vector3 balancedPosition;
     private Vector3 targetPosition;
     private ArrayList alpacas;
 
     void Start() {
+        balancedHeight = this.transform.position.y + balancedHeightOffset;
         balancedPosition = new Vector3(this.transform.position.x, balancedHeight, this.transform.position.z);
         alpacas = new ArrayList();
     }
@@ -57,6 +60,8 @@ public class ScaleMovement : MonoBehaviour {
         // without this offset, the scale never gets to the target position exactly so the alpaca(s) never gets it's agent reenabled
         float targetOffset;
         targetOffset = 0.1f;
+
+        FMOD_StudioSystem.instance.PlayOneShot(movementAudio, transform.position);
 
         if (movingUp)
         {
