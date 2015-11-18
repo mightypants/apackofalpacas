@@ -416,7 +416,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 106198}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: .583000004, z: 0}
+  m_LocalPosition: {x: -1.19799995, y: .583000004, z: .0850000009}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 479718}
@@ -611,10 +611,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 10
   turnSpeed: 60
-  jumpSpeed: 2
+  jumpSpeed: 1.5
   fluteReach: 10
   cameraTransform: {fileID: 0}
-  gravity: 7
+  gravity: 5
 --- !u!143 &14310048
 CharacterController:
   m_ObjectHideFlags: 1
