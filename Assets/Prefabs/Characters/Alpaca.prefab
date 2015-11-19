@@ -151,6 +151,7 @@ GameObject:
   - 195: {fileID: 19511354}
   - 114: {fileID: 11414750}
   - 65: {fileID: 6591354}
+  - 135: {fileID: 13566526}
   m_Layer: 0
   m_Name: Alpaca
   m_TagString: Alpaca
@@ -353,7 +354,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131088}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21, y: 27.5608597, z: -38.6100006}
+  m_LocalPosition: {x: -22.1700001, y: -11.0600004, z: -12.5401974}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_Children:
   - {fileID: 401002}
@@ -467,7 +468,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 1
-  m_AngularDrag: Infinity
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -481,7 +482,7 @@ BoxCollider:
   m_GameObject: {fileID: 131088}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: .300000012, y: .5, z: .600000024}
   m_Center: {x: 0, y: 0, z: 0}
@@ -500,6 +501,18 @@ MonoBehaviour:
   wanderDelay: 1
   commandSustain: 15
   isSummoned: 0
+--- !u!135 &13566526
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131088}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .400000006
+  m_Center: {x: 0, y: .100000001, z: 0}
 --- !u!195 &19511354
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -1610,7 +1623,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_AngularDrag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131088}
