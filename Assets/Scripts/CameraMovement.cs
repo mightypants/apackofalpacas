@@ -6,13 +6,12 @@ public class CameraMovement : MonoBehaviour
     public GameObject target;                   // target the camera focuses on
     public float targetHeight = 1.5f;           // the height, relative to the player, where the camera will point
     public float defaultTargetHeight = 1.5f;    // allows the player to snap back to the original height after moving around
-    public float maxTargetHeight = 5;
-    public float minTargetHeight = .5f;
+    public float maxTargetHeight = 5;           // used to limit how high the camera can look
+    public float minTargetHeight = .5f;         // used to limit how low the camera can look
     public float orbitSpeed = 5;                // speed of the camera's orbit around the player
-    public float rotateSpeed = .5f;               // the rate of the camera's rotation around the x axis
+    public float rotateSpeed = .5f;             // the rate of the camera's rotation around the x axis
 
     private float angle;
-    private float defaultAngle;
     private Vector3 offset;                     // vector describing the space between the camera and target
 
 
@@ -20,9 +19,7 @@ public class CameraMovement : MonoBehaviour
     {
         //set up references
         offset = target.transform.position - transform.position;
-        defaultAngle = target.transform.eulerAngles.y;
-        angle = defaultAngle;
-
+        angle = target.transform.eulerAngles.y;
     }
 
     void LateUpdate()
@@ -30,7 +27,7 @@ public class CameraMovement : MonoBehaviour
         if (Input.GetButtonDown("CamReset"))
         {
             targetHeight = defaultTargetHeight;
-            angle = defaultAngle;
+            angle = target.transform.eulerAngles.y;
         }
 
         float h = Input.GetAxis("Horizontal2");

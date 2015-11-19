@@ -49,7 +49,6 @@ public class PlayerMovement : MonoBehaviour
     void Move(float h, float v)
     {
         // player movement is relative to the camera
-		Debug.Log(gameObject.name);
         Vector3 forward = cameraTransform.forward.normalized;
         Vector3 movement = (h * cameraTransform.right +  v * forward).normalized;
         

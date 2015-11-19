@@ -3,16 +3,18 @@ using System.Collections;
 
 public class LeverActivation : MonoBehaviour 
 {
-    public GameObject switchTarget;                 // what the switch object is connected to.
+    public GameObject target;                 // what the switch object is connected to.
     public float rotationOffset = 45;
     public float positionOffset = .35f;
 
+    private DoorLift targetMover;
     private Vector3 activePosition;
     private Quaternion activeRotation;
     private bool isActivated;
     
     void Start() 
     {
+        targetMover = target.GetComponent<DoorLift>();
         isActivated = false;
         activePosition = new Vector3(transform.position.x, transform.position.y, transform.position.z + positionOffset);
         activeRotation = Quaternion.Euler(transform.rotation.x + rotationOffset, transform.rotation.y, transform.rotation.z);
@@ -22,9 +24,10 @@ public class LeverActivation : MonoBehaviour
     {
         if (c.tag == "Player") 
         {  
-            if (Input.GetButton("Activate"))
+            if (Input.GetButton("Activate") && !isActivated)
             {
                 isActivated = true;
+                targetMover.NotifyActiveStatus(true);
                 transform.position = activePosition;
                 transform.rotation = activeRotation;
             }
@@ -35,4 +38,6 @@ public class LeverActivation : MonoBehaviour
     {
         return this.isActivated;
     }
+
+
 }
