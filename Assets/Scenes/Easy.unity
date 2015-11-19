@@ -12024,14 +12024,6 @@ Prefab:
       propertyPath: m_Name
       value: Gemstone (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 425044, guid: 7d06f214d34f449b28181568258de2ac, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 425044, guid: 7d06f214d34f449b28181568258de2ac, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7d06f214d34f449b28181568258de2ac, type: 2}
   m_IsPrefabParent: 0
