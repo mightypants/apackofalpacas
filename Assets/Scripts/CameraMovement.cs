@@ -20,8 +20,9 @@ public class CameraMovement : MonoBehaviour
     {
         //set up references
         offset = target.transform.position - transform.position;
-        angle = target.transform.eulerAngles.y;
         defaultAngle = target.transform.eulerAngles.y;
+        angle = defaultAngle;
+
     }
 
     void LateUpdate()

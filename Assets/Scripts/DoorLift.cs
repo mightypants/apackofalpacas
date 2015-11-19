@@ -9,7 +9,7 @@ public class DoorLift : MonoBehaviour {
 
     private Vector3 openPosition;
     private Vector3 closedPosition;
-    public string doorAudio;                // the name (including path) of the FMOD sound effect the target will play 
+    //public string doorAudio;                // the name (including path) of the FMOD sound effect the target will play 
     
     void Start () {
         openPosition = new Vector3(transform.position.x, transform.position.y + raiseHeight, transform.position.z);
@@ -22,11 +22,24 @@ public class DoorLift : MonoBehaviour {
 
         foreach (GameObject s in switches)
         {
-            Switch switchAction = s.GetComponent<Switch>();
-
-            if (switchAction.IsActivated())
+            // need to accommodate different types of switches; this solution is really ugly but will work until I have time to fix it
+            if (s.GetComponent<Switch>() != null)
             {
-                currentActiveSwitches++;
+                Switch switchAction = s.GetComponent<Switch>();
+
+                if (switchAction.IsActivated())
+                {
+                    currentActiveSwitches++;
+                }
+            }
+            else if (s.GetComponent<LeverActivation>() != null)
+            {
+                LeverActivation leverAction = s.GetComponent<LeverActivation>();
+                
+                if (leverAction.IsActivated())
+                {
+                    currentActiveSwitches++;
+                }
             }
         }
 
