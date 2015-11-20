@@ -1,16 +1,12 @@
-﻿    using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class Switch : MonoBehaviour 
 {
-    public GameObject switchTarget;                 // what the switch object is connected to.
-    public string switchTargetAudio;                // the name (including path) of the FMOD sound effect the target will play 
-    //public Texture activeTexture;                    // texture that is applied when switch activates game object
-    //public Texture defaultTexture;                // texture applied to game object normally (used to return to normal state). 
+    public GameObject target;                 // what the switch object is connected to.
     public int requiredAlpacas = 1;                 // the number of alpacas needed to activate the switch
-    
-    //private Animation switchTargetAnimation;        // animation for target of switch (door animation, cage animation, etc).   
-    //private Renderer[] switchTargetActiveColor;     // attaches to the color of the object, changing it's active color.
+
+    private DoorLift targetMover;
     private bool isActivated;
     private string characterObjectTag = "Alpaca";   // tag switch searches for
     private int alpacasPresent;                     // the number of alpacas currently on the switch
@@ -18,9 +14,8 @@ public class Switch : MonoBehaviour
     
     void Start() 
     {
-        //switchTargetActiveColor = switchTarget.GetComponentsInChildren<Renderer>();
-        //switchTargetAnimation = switchTarget.GetComponent<Animation>();
         alpacasPresent = 0;
+        targetMover = target.GetComponent<DoorLift>();
     }
     
     void OnTriggerEnter(Collider c)
@@ -31,25 +26,14 @@ public class Switch : MonoBehaviour
             AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
             StartCoroutine(alpaca.MoveTowardTarget(gameObject));
             alpacasPresent++;
-            Debug.Log("An alpaca is present!! Number: " + alpacasPresent);
         
             if (alpacasPresent >= requiredAlpacas)
             {
-                FMOD_StudioSystem.instance.PlayOneShot(switchTargetAudio, switchTarget.transform.position);
                 isActivated = true;
-
-                //switchTargetAnimation.Play();
-                
-//                foreach(Renderer r in switchTargetActiveColor)
-//                {
-//                    r.material.mainTexture = activeTexture;
-//                }
+                targetMover.NotifyActiveStatus(true);
+                Debug.Log("tried to call");
             }
         } 
-        else 
-        {
-            Debug.Log ("You aren't an Alpaca!!");//remove when final
-        }
     }
     
     void OnTriggerExit(Collider c)
@@ -57,18 +41,15 @@ public class Switch : MonoBehaviour
         if (c.tag == characterObjectTag)
         {
             alpacasPresent--;
-            Debug.Log(alpacasPresent);
+
+            if (alpacasPresent < requiredAlpacas)
+            {
+                isActivated = false;
+                targetMover.NotifyActiveStatus(false);
+            }
         }
         
-        if (alpacasPresent <= requiredAlpacas)
-        {
-            //FMOD_StudioSystem.instance.PlayOneShot(switchTargetAudio, switchTarget.transform.position);
-            isActivated = false;
-//            foreach (Renderer r in switchTargetActiveColor) 
-//            {
-//                r.material.mainTexture = defaultTexture;
-//            }
-        }
+
     }
 
     public bool IsActivated()

@@ -4,18 +4,19 @@ using System.Collections;
 public class ScaleMovement : MonoBehaviour {
 
     public float speed = 3;
-
+    public float balancedHeightOffset = 0;
+    public string movementAudio;
+    
     private int alpacasPresent;
+    private float balancedHeight;
     private Vector3 balancedPosition;
     private Vector3 targetPosition;
+    private ArrayList alpacas;
 
     void Start() {
-        balancedPosition = this.transform.position;
-
-    }
-    
-    void Update() {
-
+        balancedHeight = this.transform.position.y + balancedHeightOffset;
+        balancedPosition = new Vector3(this.transform.position.x, balancedHeight, this.transform.position.z);
+        alpacas = new ArrayList();
     }
 
     void OnTriggerEnter(Collider c)
@@ -23,6 +24,7 @@ public class ScaleMovement : MonoBehaviour {
         if (c.tag == "Alpaca") 
         {  
             alpacasPresent++;
+            alpacas.Add(c.gameObject);
         }
     }
 
@@ -31,6 +33,7 @@ public class ScaleMovement : MonoBehaviour {
         if (c.tag == "Alpaca") 
         {  
             alpacasPresent--;
+            alpacas.Remove(c.gameObject);
         }
     }
 
@@ -41,15 +44,47 @@ public class ScaleMovement : MonoBehaviour {
 
     public IEnumerator AdjustPosition(int movement)
     {
+        if (alpacas.Count > 0)
+        {
+            foreach (GameObject a in alpacas)
+            {
+                AlpacaMovement alpacaMovement = a.GetComponent<AlpacaMovement>();
+                alpacaMovement.ToggleNavAgent();
+                alpacaMovement.DisableSummon();
+            }
+        }
 
         targetPosition = new Vector3(balancedPosition.x, balancedPosition.y + movement, balancedPosition.z);
+        bool movingUp = targetPosition.y - this.transform.position.y > 0 ? true : false;
 
-        while (targetPosition != this.transform.position)
+        // without this offset, the scale never gets to the target position exactly so the alpaca(s) never gets it's agent reenabled
+        float targetOffset;
+        targetOffset = 0.1f;
+
+        //FMOD_StudioSystem.instance.PlayOneShot(movementAudio, transform.position);
+
+        if (movingUp)
         {
-            this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.deltaTime * speed);
-            yield return null;
-        }      
+            while (this.transform.position.y < targetPosition.y - targetOffset)
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.deltaTime * speed);
+                yield return null;
+            }
+        }
+        else
+        {
+            while (this.transform.position.y > targetPosition.y + targetOffset)
+            {
+                this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, Time.deltaTime * speed);
+                yield return null;
+            }
+        }
+
+        foreach (GameObject a in alpacas)
+        {
+            AlpacaMovement alpacaMovement = a.GetComponent<AlpacaMovement>();
+            alpacaMovement.ToggleNavAgent();
+            alpacaMovement.EnableSummon();
+        }
     }
-
-
 }

@@ -3,38 +3,52 @@ using System.Collections;
 
 public class CameraMovement : MonoBehaviour
 {
-    public GameObject target;           // target the camera focuses on
-    public float lookAngleOffset = 1;   // allows the target to be off-center in the camera's view
-    public float rotateSpeed = 5;       // speed of the camera's rotation
-    public float zoomSpeed = 5;
+    public GameObject target;                   // target the camera focuses on
+    public float targetHeight = 1.5f;           // the height, relative to the player, where the camera will point
+    public float defaultTargetHeight = 1.5f;    // allows the player to snap back to the original height after moving around
+    public float maxTargetHeight = 5;           // used to limit how high the camera can look
+    public float minTargetHeight = .5f;         // used to limit how low the camera can look
+    public float orbitSpeed = 5;                // speed of the camera's orbit around the player
+    public float rotateSpeed = .5f;             // the rate of the camera's rotation around the x axis
 
-    private Vector3 offset;             // distance between the camera and target
-    //private Vector3 lastDist;
+    private float angle;
+    private Vector3 offset;                     // vector describing the space between the camera and target
+
 
     void Start()
     {
         //set up references
         offset = target.transform.position - transform.position;
+        angle = target.transform.eulerAngles.y;
     }
 
     void LateUpdate()
     {
+        if (Input.GetButtonDown("CamReset"))
+        {
+            targetHeight = defaultTargetHeight;
+            angle = target.transform.eulerAngles.y;
+        }
+
         float h = Input.GetAxis("Horizontal2");
         float v = Input.GetAxis("Vertical2");
-        float angle = transform.eulerAngles.y;
         
         if (h >= 0.5f || h <= -0.5f )
         {
-            angle += h * rotateSpeed;
+            angle += h * orbitSpeed;
         }
-
-        //lastDist += v * Vector3.forward * zoomSpeed;
 
         Quaternion rotation = Quaternion.Euler(0, angle, 0);
         transform.position = target.transform.position - (rotation * offset);
+
+        if (v >= 0.5f || v <= -0.5f )
+        {
+            //targetHeight += v * rotateSpeed;
+            targetHeight = Mathf.Clamp(targetHeight + v * rotateSpeed, minTargetHeight, maxTargetHeight);
+        }
         
         // aim the camera just above the target game object so that the target is not directly centered in the screen
-        Vector3 lookTarget = new Vector3(target.transform.position.x, target.transform.position.y + lookAngleOffset, target.transform.position.z);
+        Vector3 lookTarget = new Vector3(target.transform.position.x, target.transform.position.y + targetHeight, target.transform.position.z);
         transform.LookAt(lookTarget);
         
         // pin the camera to the wall if it bumps into one, rather than having it go through
