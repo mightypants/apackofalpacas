@@ -5,13 +5,19 @@ public class CameraMovement : MonoBehaviour
 {
     public GameObject target;                   // target the camera focuses on
     public float targetHeight = 1.5f;           // the height, relative to the player, where the camera will point
-    public float defaultTargetHeight = 1.5f;    // allows the player to snap back to the original height after moving around
-    public float maxTargetHeight = 5;           // used to limit how high the camera can look
-    public float minTargetHeight = .5f;         // used to limit how low the camera can look
-    public float orbitSpeed = 5;                // speed of the camera's orbit around the player
-    public float rotateSpeed = .5f;             // the rate of the camera's rotation around the x axis
 
-    private float angle;
+    public float baseOrbitSpeed = 2f;                // speed of the camera's orbit around the player
+    public float maxOrbitSpeed = 5;
+    public float baseRotateSpeed = .1f;             // the rate of the camera's rotation around the x axis
+    public float maxRotateSpeed = .5f;
+    public float maxXAngle = 15f;
+    public float minXAngle = -15f;
+
+    private float orbitSpeed;                // speed of the camera's orbit around the player
+    private float rotateSpeed;
+    private float yAngle;
+    private float defaultXAngle;
+    private float xAngle;
     private Vector3 offset;                     // vector describing the space between the camera and target
 
 
@@ -19,32 +25,46 @@ public class CameraMovement : MonoBehaviour
     {
         //set up references
         offset = target.transform.position - transform.position;
-        angle = target.transform.eulerAngles.y;
+        yAngle = target.transform.eulerAngles.y;
+        orbitSpeed = baseOrbitSpeed;
+        rotateSpeed = baseRotateSpeed;
+        defaultXAngle = target.transform.eulerAngles.x;
+        xAngle = defaultXAngle;
     }
 
     void LateUpdate()
     {
-        if (Input.GetButtonDown("CamReset"))
-        {
-            targetHeight = defaultTargetHeight;
-            angle = target.transform.eulerAngles.y;
-        }
-
         float h = Input.GetAxis("Horizontal2");
         float v = Input.GetAxis("Vertical2");
-        
+
         if (h >= 0.5f || h <= -0.5f )
         {
-            angle += h * orbitSpeed;
+            yAngle += h * orbitSpeed;
+            orbitSpeed = Mathf.Clamp(orbitSpeed * 1.075f, baseOrbitSpeed, maxOrbitSpeed);
+        }
+        else 
+        {
+            orbitSpeed = baseOrbitSpeed;
         }
 
-        Quaternion rotation = Quaternion.Euler(0, angle, 0);
+        if (v >= 0.8f || v <= -0.8f )
+        {
+            xAngle = Mathf.Clamp(xAngle + v * rotateSpeed, minXAngle, maxXAngle);
+            rotateSpeed = Mathf.Clamp(rotateSpeed * 1.05f, baseRotateSpeed, maxRotateSpeed);
+        }
+        else
+        {
+            rotateSpeed = baseRotateSpeed;
+        }
+
+        Quaternion rotation = Quaternion.Euler(xAngle, yAngle, 0);
         transform.position = target.transform.position - (rotation * offset);
 
-        if (v >= 0.5f || v <= -0.5f )
+        if (Input.GetButtonDown("CamReset"))
         {
-            //targetHeight += v * rotateSpeed;
-            targetHeight = Mathf.Clamp(targetHeight + v * rotateSpeed, minTargetHeight, maxTargetHeight);
+            yAngle = target.transform.eulerAngles.y;
+            xAngle = defaultXAngle;
+            //StartCoroutine(Reset());;
         }
         
         // aim the camera just above the target game object so that the target is not directly centered in the screen
@@ -58,5 +78,24 @@ public class CameraMovement : MonoBehaviour
         {
             transform.position = wallHit.point;
         }
+    }
+
+    IEnumerator Reset()
+    {
+        float targetYAngle = target.transform.eulerAngles.y;
+        //float targetXAngle = defaultXAngle;
+
+        Debug.Log("t: " + targetYAngle);
+        Debug.Log("c: " + yAngle);
+
+        while (yAngle > targetYAngle)
+        {
+            //yAngle = Mathf.Lerp(yAngle, targetYAngle, Time.deltaTime * 3);
+            yAngle -= 2f;
+            //xAngle = Mathf.Lerp(yAngle, targetXAngle, Time.deltaTime * 1f);
+            yield return new WaitForEndOfFrame();
+        }
+
+
     }
 }

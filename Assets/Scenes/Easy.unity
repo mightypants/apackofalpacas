@@ -3709,6 +3709,34 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 1274616716}
+    - target: {fileID: 11426336, guid: adce606bd47c746d69b8241f91325460, type: 2}
+      propertyPath: rotateSpeed
+      value: .699999988
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426336, guid: adce606bd47c746d69b8241f91325460, type: 2}
+      propertyPath: maxXAngle
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426336, guid: adce606bd47c746d69b8241f91325460, type: 2}
+      propertyPath: minXAngle
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426336, guid: adce606bd47c746d69b8241f91325460, type: 2}
+      propertyPath: maxOrbitSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426336, guid: adce606bd47c746d69b8241f91325460, type: 2}
+      propertyPath: baseOrbitSpeed
+      value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426336, guid: adce606bd47c746d69b8241f91325460, type: 2}
+      propertyPath: baseRotateSpeed
+      value: .300000012
+      objectReference: {fileID: 0}
+    - target: {fileID: 11426336, guid: adce606bd47c746d69b8241f91325460, type: 2}
+      propertyPath: maxRotateSpeed
+      value: .699999988
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: adce606bd47c746d69b8241f91325460, type: 2}
   m_IsPrefabParent: 0
