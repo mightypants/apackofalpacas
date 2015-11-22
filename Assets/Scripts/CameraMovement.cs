@@ -6,25 +6,28 @@ public class CameraMovement : MonoBehaviour
     public GameObject target;                   // target the camera focuses on
     public float targetHeight = 1.5f;           // the height, relative to the player, where the camera will point
 
-    public float baseOrbitSpeed = 2f;                // speed of the camera's orbit around the player
-    public float maxOrbitSpeed = 5;
-    public float baseRotateSpeed = .1f;             // the rate of the camera's rotation around the x axis
-    public float maxRotateSpeed = .5f;
-    public float maxXAngle = 15f;
+    public float baseOrbitSpeed = 2f;           // starting speed of the camera's orbit around the player
+    public float maxOrbitSpeed = 5;             // top speed of the orbit around the player, after accelerating from baseOrbitSpeed
+    public float baseRotateSpeed = .1f;         // starting speed of the camera's rotation around the x axis
+    public float maxRotateSpeed = .5f;          // top speed rotation around the x axis, after accelerating from baseRotateSpeed
+    public float maxXAngle = 20f;
     public float minXAngle = -15f;
+    public float maxDistance = 1f;
+    public float minDistance = 10f;
 
-    private float orbitSpeed;                // speed of the camera's orbit around the player
-    private float rotateSpeed;
-    private float yAngle;
-    private float defaultXAngle;
-    private float xAngle;
-    private Vector3 offset;                     // vector describing the space between the camera and target
-
-
+    private float orbitSpeed;                   // current speed of the camera's orbit around the player
+    private float rotateSpeed;                  // current speed of the rotation around the x axis
+    private float yAngle;                       // current angle on the y axis
+    private float defaultXAngle;                // default angle on the x axis, can snap back to this angle using Reset()
+    private float xAngle;                       // current angle on the x axis
+    private Vector3 defaultOffset;              // starting position of the camera relative to its target
+    private Vector3 offset;                     // current position of the camera relative to its target
+    
     void Start()
     {
         //set up references
-        offset = target.transform.position - transform.position;
+        defaultOffset = target.transform.position - transform.position;
+        offset = defaultOffset;
         yAngle = target.transform.eulerAngles.y;
         orbitSpeed = baseOrbitSpeed;
         rotateSpeed = baseRotateSpeed;
@@ -49,8 +52,14 @@ public class CameraMovement : MonoBehaviour
 
         if (v >= 0.8f || v <= -0.8f )
         {
-            xAngle = Mathf.Clamp(xAngle + v * rotateSpeed, minXAngle, maxXAngle);
+            xAngle = Mathf.Clamp(xAngle - v * rotateSpeed, minXAngle, maxXAngle);
             rotateSpeed = Mathf.Clamp(rotateSpeed * 1.05f, baseRotateSpeed, maxRotateSpeed);
+
+            if (xAngle >= maxXAngle || xAngle <= minXAngle)
+            {
+                offset = offset - Vector3.forward * v / 20 ;
+                
+            }
         }
         else
         {
@@ -64,6 +73,7 @@ public class CameraMovement : MonoBehaviour
         {
             yAngle = target.transform.eulerAngles.y;
             xAngle = defaultXAngle;
+            offset = defaultOffset;
             //StartCoroutine(Reset());;
         }
         
