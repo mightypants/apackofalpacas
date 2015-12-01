@@ -1505,6 +1505,18 @@ Prefab:
       propertyPath: InitialModule.startColor.maxGradient.atime0
       value: 6361
       objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: targetObj
+      value: 
+      objectReference: {fileID: 1274616716}
+    - target: {fileID: 19511354, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: CharacterObj
+      value: 
+      objectReference: {fileID: 1274616717}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
   m_IsPrefabParent: 0
@@ -1979,6 +1991,18 @@ Prefab:
       propertyPath: InitialModule.startColor.maxGradient.atime1
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: targetObj
+      value: 
+      objectReference: {fileID: 1274616716}
+    - target: {fileID: 19511354, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: CharacterObj
+      value: 
+      objectReference: {fileID: 1274616717}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
   m_IsPrefabParent: 0
@@ -2557,6 +2581,18 @@ Prefab:
       propertyPath: m_Name
       value: Alpaca (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: targetObj
+      value: 
+      objectReference: {fileID: 1274616716}
+    - target: {fileID: 19511354, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: CharacterObj
+      value: 
+      objectReference: {fileID: 1274616717}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
   m_IsPrefabParent: 0
@@ -4323,6 +4359,18 @@ Prefab:
       propertyPath: m_BaseOffset
       value: .400000006
       objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: targetObj
+      value: 
+      objectReference: {fileID: 1274616716}
+    - target: {fileID: 19511354, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: CharacterObj
+      value: 
+      objectReference: {fileID: 1274616717}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
   m_IsPrefabParent: 0
@@ -7157,39 +7205,21 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 106198, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 11491718, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1530928203}
-    m_RemovedComponents:
-    - {fileID: 9519016, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1274616716 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 106198, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
   m_PrefabInternal: {fileID: 1274616715}
---- !u!143 &1274616718
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1274616716}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.5
-  m_Radius: .400000006
-  m_SlopeLimit: 45
-  m_StepOffset: .5
-  m_SkinWidth: .0799999982
-  m_MinMoveDistance: .00100000005
-  m_Center: {x: 0, y: .200000003, z: 0}
+--- !u!4 &1274616717 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 455908, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
+  m_PrefabInternal: {fileID: 1274616715}
 --- !u!1 &1281664975 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: a786f9a2a5e3f504a80df08f4a15777d, type: 3}
@@ -7303,6 +7333,18 @@ Prefab:
       propertyPath: m_Name
       value: Alpaca (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: targetObj
+      value: 
+      objectReference: {fileID: 1274616716}
+    - target: {fileID: 19511354, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: CharacterObj
+      value: 
+      objectReference: {fileID: 1274616717}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
   m_IsPrefabParent: 0
@@ -8266,6 +8308,18 @@ Prefab:
       propertyPath: m_BaseOffset
       value: .400000006
       objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: targetObj
+      value: 
+      objectReference: {fileID: 1274616716}
+    - target: {fileID: 19511354, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: CharacterObj
+      value: 
+      objectReference: {fileID: 1274616717}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
   m_IsPrefabParent: 0
@@ -8654,11 +8708,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1274616716}
   targetHeight: 1
-  defaultTargetHeight: 1
-  maxTargetHeight: 3.5
-  minTargetHeight: 1
-  orbitSpeed: 2
-  rotateSpeed: .150000006
+  baseOrbitSpeed: 2
+  maxOrbitSpeed: 5
+  baseRotateSpeed: .100000001
+  maxRotateSpeed: .5
+  maxXAngle: 20
+  minXAngle: -15
+  maxDistance: 15
+  minDistance: 2
+  smooth: 6
 --- !u!1 &1536044781 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 317f80fb0da0bd84bae814fe2757f16b, type: 3}
@@ -9305,6 +9363,18 @@ Prefab:
       propertyPath: m_BaseOffset
       value: .400000006
       objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: targetObj
+      value: 
+      objectReference: {fileID: 1274616716}
+    - target: {fileID: 19511354, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: m_StoppingDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11414750, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
+      propertyPath: CharacterObj
+      value: 
+      objectReference: {fileID: 1274616717}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 814054c92203b4354adb7c65da6cb9df, type: 2}
   m_IsPrefabParent: 0
