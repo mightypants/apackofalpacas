@@ -104,7 +104,7 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
-        fluteAudio.release();
+        //fluteAudio.release();
     }
 
     void SummonAlpaca(bool locationSpecified)
