@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using FMOD.Studio;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,29 +11,38 @@ public class PlayerMovement : MonoBehaviour
     public float fluteReach = 100;
     public Transform cameraTransform;
     public float gravity = 9.8f;
+    public GameObject summonTarget;
     
     private CharacterController characterController;
     private ParticleSystem characterParticles;
     private EventInstance fluteCall1;
-    private float fluteCall1Length = 3.0f;
+    private EventInstance fluteCall2;
     private float vertSpeed;
 
     
     void Start()
     {
-        //set up references
         characterController = GetComponent<CharacterController>();
         characterParticles = GameObject.Find("Player/Flute Radius").GetComponent<ParticleSystem>();
-        fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1"); 
+        fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1");
+        fluteCall2 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute2");
     }
     
     
     void Update()
     {
+        if (Input.GetButtonDown("Flute2"))
+        {
+            // start the flute sound effect if key just pressed
+            StartCoroutine(PlayFlute(fluteCall2));
+            SummonAlpaca(true);
+        }
+
         if (Input.GetButtonDown("Flute1"))
         {
             // start the flute sound effect if key just pressed
-            StartCoroutine(PlayFlute());
+            StartCoroutine(PlayFlute(fluteCall1));
+            SummonAlpaca(false);
         }
 
         // get input and call the Move and Turn methods
@@ -74,41 +84,45 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * turnSpeed);
     }
     
-    IEnumerator PlayFlute()
+    IEnumerator PlayFlute(EventInstance fluteAudio)
     {
         // set the position of the sound effect to be the player's position
         var attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
-        fluteCall1.set3DAttributes(attributes);
-        fluteCall1.start();
+        fluteAudio.set3DAttributes(attributes);
+        fluteAudio.start();
 
         characterParticles.Play(true);
 
         float start = Time.time;
         float time = start;
 
-        while (time <= start + fluteCall1Length)
+        while (time <= start + 5f)
         {
             // update the position of the sound as the player moves
             attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
-            fluteCall1.set3DAttributes(attributes);
-
-            Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, fluteReach);
-            
-            foreach(Collider c in hitColliders)
-            {
-                AlpacaMovement alpacaMovement = c.gameObject.GetComponent<AlpacaMovement>();
-
-                if (c.tag == "Alpaca" && !alpacaMovement.isSummoned)
-                {
-					if (!alpacaMovement.isSummoned)
-					{	
-						StartCoroutine(alpacaMovement.MoveTowardTarget(gameObject));
-					}
-                }
-            }
+            fluteAudio.set3DAttributes(attributes);
 
             time += Time.deltaTime;
             yield return null;
+        }
+    }
+
+    void SummonAlpaca(bool locationSpecified)
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, fluteReach);
+
+        foreach (Collider c in hitColliders) {
+
+            AlpacaMovement alpacaMovement = c.gameObject.GetComponent<AlpacaMovement>();
+
+            if (c.tag == "Alpaca") {
+                // instantiate a marker for the new alpaca destination
+                Vector3 destinationPosition = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
+                GameObject destinationObj = locationSpecified ? (GameObject) Instantiate(summonTarget, destinationPosition, Quaternion.identity) : gameObject;
+
+                // call the alpaca to the destination
+                alpacaMovement.MoveTowardTarget(destinationObj);
+            }
         }
     }
 }
