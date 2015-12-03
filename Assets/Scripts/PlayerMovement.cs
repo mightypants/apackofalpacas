@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     private ParticleSystem characterParticles;
     private EventInstance fluteCall1;
+    private EventInstance fluteCall2;
     private float vertSpeed;
 
     
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         characterParticles = GameObject.Find("Player/Flute Radius").GetComponent<ParticleSystem>();
         fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1");
+        fluteCall2 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute2");
     }
     
     
@@ -32,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Flute2"))
         {
             // start the flute sound effect if key just pressed
-            StartCoroutine(PlayFlute(fluteCall1));
+            StartCoroutine(PlayFlute(fluteCall2));
             SummonAlpaca(true);
         }
 
@@ -103,8 +105,6 @@ public class PlayerMovement : MonoBehaviour
             time += Time.deltaTime;
             yield return null;
         }
-
-        //fluteAudio.release();
     }
 
     void SummonAlpaca(bool locationSpecified)
@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (c.tag == "Alpaca") {
                 // instantiate a marker for the new alpaca destination
-                Vector3 destinationPosition = transform.position;
+                Vector3 destinationPosition = new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z);
                 GameObject destinationObj = locationSpecified ? (GameObject) Instantiate(summonTarget, destinationPosition, Quaternion.identity) : gameObject;
 
                 // call the alpaca to the destination

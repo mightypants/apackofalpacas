@@ -24,14 +24,12 @@ public class Switch : MonoBehaviour
         {  
             // as soon as the alpaca hits the trigger, it should lock on to the switch and stay put
             AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
-            //StartCoroutine(alpaca.MoveTowardTarget(gameObject));
             alpacasPresent++;
         
             if (alpacasPresent >= requiredAlpacas)
             {
                 isActivated = true;
                 targetMover.NotifyActiveStatus(true);
-                Debug.Log("tried to call");
             }
         } 
     }
