@@ -3683,7 +3683,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 493270, guid: adce606bd47c746d69b8241f91325460, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 157.399994
+      value: 182.179993
       objectReference: {fileID: 0}
     - target: {fileID: 493270, guid: adce606bd47c746d69b8241f91325460, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10282,7 +10282,7 @@ Transform:
   - {fileID: 758262755}
   - {fileID: 1169864943}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &1169628146
 GameObject:
   m_ObjectHideFlags: 0
@@ -10949,7 +10949,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455908, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 161.399994
+      value: 186.179993
       objectReference: {fileID: 0}
     - target: {fileID: 455908, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10975,10 +10975,6 @@ Prefab:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1547348447}
-    - target: {fileID: 14376510, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
-      propertyPath: m_Height
-      value: 1.39999998
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
   m_IsPrefabParent: 0

@@ -4,112 +4,83 @@ using FMOD.Studio;
 
 public class AlpacaMovement : MonoBehaviour
 {
-    public float wanderRadiusMultiplier;            // used to set the distance the alpaca will move from its origin while wandering
-    public float wanderDelay;                       // the length of time between alpaca's random movements
-    public float commandSustain;                    // the length of time for which the alpaca will obey the player's most recent command
-    public bool isSummoned;                         // whether the alpaca has been summoned to a particular target (vs. wandering)
-                                                    
-    Transform targetObj;                            // the transform of the target used by the nav mesh agent
-    Vector3 targetPos;                              // the current target position; this is an arbitrary position while wandering, tied to a game object when called by the player, for example
-    NavMeshAgent nav;                               // the alpaca's nav mesh agent
-    bool isBound;                                   // whether or not the alpaca is locked to a puzzle piece
-    Vector3 wanderOrigin;                           // the temporary origin point arount which the alpaca will wander
-    private ParticleSystem alpacaParticles;
-    private EventInstance alpacaHum;
-    private bool isSummonable;
+    public GameObject targetObj;                    // defaults to the player, but can change to a player-defined destination
 
-
-    // TODO: wander origin should be further from switch after use
+    private Vector3 targetPos;                      // the current target position; either the player's position or a player-defined target
+    private NavMeshAgent nav;                       // the alpaca's nav mesh agent
+    private ParticleSystem alpacaParticles;         // the alpaca's particle effect
+    private EventInstance alpacaHum;                // audio event for the alpaca hum
+    private bool isSummonable;                      // used to prevent the alpaca from being summoned when unable to move (such as when on a moving scale piece)
+    private bool isLockedToTarget;                  // locked to a player-defined target
 
     void Start()
     {
         nav = GetComponent<NavMeshAgent>();
         alpacaParticles = GetComponentInChildren<ParticleSystem>();
-        wanderOrigin = this.transform.position;
-        SetRandomDestination();
-        isSummoned = false;
         isSummonable = true;
+        isLockedToTarget = false;
+
+        if (targetObj != null)
+        {
+            targetPos = targetObj.transform.position;
+            nav.SetDestination(targetPos);
+        }
+        else 
+        {
+            targetPos = transform.position;
+        }
 
         alpacaHum = FMOD_StudioSystem.instance.GetEvent("event:/sfx/alpaca/hum");
     }
     
     void Update()
     {
-        float x = this.transform.position.x;
-        float z = this.transform.position.z;
-        float targetx = targetPos.x;
-        float targetz = targetPos.z;
-
-        if (isSummoned && nav.enabled)
+        // update the target position to follow the player's movement
+        if (targetObj != null)
         {
-            // update the target position if the target is a game object, as it may have moved (usually when the target is the player)
-            targetPos = targetObj.position;
-            nav.SetDestination(targetPos);
-        }
-        else 
-        {
-            // if alpaca has arrived at its wander target, pause movement before setting the next target location
-            if (x == targetx && z == targetz )
+            if (targetObj.tag == "Player")
             {
-                SetRandomDestination();
+                targetPos = targetObj.transform.position;
+                nav.SetDestination(targetPos);
             }
         }
     }
     
-    public IEnumerator MoveTowardTarget(GameObject obj)
+    public void MoveTowardTarget(GameObject obj)
     {
-        // set target to the object that called the method
-        nav.enabled = true;
-        targetObj = obj.transform;
-        targetPos = targetObj.position;
-        nav.SetDestination(targetPos);
-        isSummoned = true;
-        alpacaParticles.Play(true);
+        // destroy previous destination target (i.e. non-player) if it exists
+        if (targetObj != null)
+        {
+            if (isLockedToTarget)
+            {
+                Destroy(targetObj, 1f);
+                targetObj = null;
+            }
+        }
 
-        // we don't want the alpacas walking directly into the player, but other targets--switches, etc.--should allow this
-        if (targetObj.tag == "Player")
+        if (obj.tag == "Player")
         {
             nav.stoppingDistance = 2.5f;
+            isLockedToTarget = false;
         }
         else 
         {
             nav.stoppingDistance = 0f;
+            isLockedToTarget = true;
+            alpacaParticles.Play(true);
         }
 
-        alpacaParticles.Play(true);
+        // set target to the destination object passed by the player
+        nav.enabled = true;
+        targetObj = obj;
+        targetPos = targetObj.transform.position;
+        nav.SetDestination(targetPos);
 
-        // continue following player for a set amount of time before resuming wandering
-        yield return new WaitForSeconds(commandSustain + Random.value * 3);
-
-        // reset wander origin so the alpaca doesn't return to a previous origin, which may be very far away
-        wanderOrigin = this.transform.position;
-        isSummoned = false;
-        SetRandomDestination();
-
+        // set up and play hum sound
         var attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
         alpacaHum.set3DAttributes(attributes);
         alpacaHum.start();
         alpacaHum.release();
-    }
-
-      // eventually would be good to have some pause between movements, but right now is too buggy
-//    IEnumerator DelayWander(float delay)
-//    {
-//        // stop all movement and set a new target
-//        nav.Stop();
-//        SetRandomDestination();
-//
-//        // resume wander after a pause 
-//        yield return new WaitForSeconds(delay + Random.value * 3);
-//        nav.Resume();
-//    }
-
-    void SetRandomDestination()
-    {
-        targetObj = null;
-        targetPos = Random.insideUnitSphere * wanderRadiusMultiplier + wanderOrigin;
-        nav.SetDestination(targetPos);
-        nav.stoppingDistance = 0f;
     }
 
     public void ToggleNavAgent()
