@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: 65097f27b8f904e1d88a30fea85bbbc8
+timeCreated: 1449178739
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Box003
+    100004: Box004
+    100006: Box005
+    100008: column001
+    100010: column002
+    100012: column003
+    100014: column004
+    100016: ground003
+    100018: ground2
+    100020: Hallway1
+    100022: highground001
+    100024: highground002
+    100026: highground003
+    100028: highground004
+    100030: highground005
+    100032: highground006
+    100034: highground007
+    100036: highground008
+    100038: Object002
+    100040: Object003
+    100042: platform002
+    100044: platform003
+    100046: platform004
+    100048: platform1
+    100050: Room1Walls
+    100052: StartWalls
+    100054: Walls
+    400000: //RootNode
+    400002: Box003
+    400004: Box004
+    400006: Box005
+    400008: column001
+    400010: column002
+    400012: column003
+    400014: column004
+    400016: ground003
+    400018: ground2
+    400020: Hallway1
+    400022: highground001
+    400024: highground002
+    400026: highground003
+    400028: highground004
+    400030: highground005
+    400032: highground006
+    400034: highground007
+    400036: highground008
+    400038: Object002
+    400040: Object003
+    400042: platform002
+    400044: platform003
+    400046: platform004
+    400048: platform1
+    400050: Room1Walls
+    400052: StartWalls
+    400054: Walls
+    2300000: Box003
+    2300002: Box004
+    2300004: Box005
+    2300006: column001
+    2300008: column002
+    2300010: column003
+    2300012: column004
+    2300014: ground003
+    2300016: ground2
+    2300018: Hallway1
+    2300020: highground001
+    2300022: highground002
+    2300024: highground003
+    2300026: highground004
+    2300028: highground005
+    2300030: highground006
+    2300032: highground007
+    2300034: highground008
+    2300036: platform002
+    2300038: platform003
+    2300040: platform004
+    2300042: platform1
+    2300044: Room1Walls
+    2300046: StartWalls
+    2300048: Walls
+    3300000: Box003
+    3300002: Box004
+    3300004: Box005
+    3300006: column001
+    3300008: column002
+    3300010: column003
+    3300012: column004
+    3300014: ground003
+    3300016: ground2
+    3300018: Hallway1
+    3300020: highground001
+    3300022: highground002
+    3300024: highground003
+    3300026: highground004
+    3300028: highground005
+    3300030: highground006
+    3300032: highground007
+    3300034: highground008
+    3300036: platform002
+    3300038: platform003
+    3300040: platform004
+    3300042: platform1
+    3300044: Room1Walls
+    3300046: StartWalls
+    3300048: Walls
+    4300000: StartWalls
+    4300002: Hallway1
+    4300004: Room1Walls
+    4300006: Walls
+    4300008: highground001
+    4300010: highground002
+    4300012: Box003
+    4300014: Box004
+    4300016: Box005
+    4300018: highground003
+    4300020: highground004
+    4300022: highground005
+    4300024: highground006
+    4300026: highground007
+    4300028: highground008
+    4300030: ground2
+    4300032: ground003
+    4300034: platform1
+    4300036: platform002
+    4300038: platform003
+    4300040: platform004
+    4300042: column001
+    4300044: column002
+    4300046: column003
+    4300048: column004
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
