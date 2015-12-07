@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Switch : MonoBehaviour 
 {
-    public GameObject target;                 // what the switch object is connected to.
+    public GameObject target;                       // what the switch object is connected to.
     public int requiredAlpacas = 1;                 // the number of alpacas needed to activate the switch
 
     private DoorLift targetMover;

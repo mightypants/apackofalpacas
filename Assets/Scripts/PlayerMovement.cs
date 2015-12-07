@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     private EventInstance fluteCall1;
     private EventInstance fluteCall2;
     private float vertSpeed;
-
     
     void Start()
     {
@@ -27,8 +26,7 @@ public class PlayerMovement : MonoBehaviour
         fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1");
         fluteCall2 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute2");
     }
-    
-    
+
     void Update()
     {
         if (Input.GetButtonDown("Flute2"))
