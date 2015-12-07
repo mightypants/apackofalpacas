@@ -29,8 +29,6 @@ public class DoorLift : MonoBehaviour {
     {
         if (currentActiveSwitches != prevActiveSwitches && currentActiveSwitches >= requiredSwitches)
         {
-            Debug.Log("*prev: " + prevActiveSwitches);
-            Debug.Log("*curr: " + currentActiveSwitches);
             StartCoroutine(RaiseDoor());
             prevActiveSwitches = currentActiveSwitches;
         }
@@ -52,7 +50,6 @@ public class DoorLift : MonoBehaviour {
 
         doorSlideAudio.release();
         doorSlideAudio.stop(STOP_MODE.ALLOWFADEOUT);
-        Debug.Log("should stop now");
     }
 
     public IEnumerator LowerDoor()
@@ -66,9 +63,6 @@ public class DoorLift : MonoBehaviour {
 
     public void NotifyActiveStatus(bool active)
     {
-        Debug.Log(gameObject.name + "heard call");
-        Debug.Log("prev: " + prevActiveSwitches);
-        Debug.Log("curr: " + currentActiveSwitches);
         if (active)
         {
             prevActiveSwitches = currentActiveSwitches;
@@ -80,5 +74,4 @@ public class DoorLift : MonoBehaviour {
             currentActiveSwitches--;
         }
     }
-
 }
