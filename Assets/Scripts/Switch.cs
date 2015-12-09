@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Switch : MonoBehaviour 
 {
-    public GameObject target;                 // what the switch object is connected to.
+    public GameObject target;                       // what the switch object is connected to.
     public int requiredAlpacas = 1;                 // the number of alpacas needed to activate the switch
 
     private DoorLift targetMover;
@@ -22,8 +22,6 @@ public class Switch : MonoBehaviour
     {
         if (c.tag == characterObjectTag) 
         {  
-            // as soon as the alpaca hits the trigger, it should lock on to the switch and stay put
-            AlpacaMovement alpaca = c.gameObject.GetComponent<AlpacaMovement>();
             alpacasPresent++;
         
             if (alpacasPresent >= requiredAlpacas)
@@ -46,8 +44,6 @@ public class Switch : MonoBehaviour
                 targetMover.NotifyActiveStatus(false);
             }
         }
-        
-
     }
 
     public bool IsActivated()
