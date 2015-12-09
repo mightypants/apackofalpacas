@@ -25,16 +25,14 @@ public class AudioManager : MonoBehaviour
 
     IEnumerator VaryWindSpeed()
     {
+        // random range is based on the current settings in FMOD
         float newWindSpeed = Random.Range(0, 10);
         float speedChange = Mathf.Abs(currWindSpeed - newWindSpeed);
+
+        // a larger change in speed should be applied over a longer period of time
         float changeTime = speedChange * 3;
         float delay = Random.Range(1, 2);
         float elapsedTime = 0;
-
-        Debug.Log("new speed: " + newWindSpeed);
-        Debug.Log("speed change: " + speedChange);
-        Debug.Log("changeTime: " + changeTime);
-        Debug.Log("delay: " + delay);
 
         while (elapsedTime < changeTime)
         {
@@ -42,7 +40,6 @@ public class AudioManager : MonoBehaviour
             windSpeedParam.setValue(currWindSpeed);
             elapsedTime += Time.deltaTime;
 
-            Debug.Log("current " + currWindSpeed);
             yield return null;
         }
 
