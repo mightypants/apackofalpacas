@@ -72,7 +72,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: .200000003, y: .200000003, z: .200000003}
+  m_Size: {x: .0500000007, y: .200000003, z: .0500000007}
   m_Center: {x: 1.11758709e-08, y: .00285584014, z: -4.88013029e-07}
 --- !u!114 &11442420
 MonoBehaviour:
@@ -85,8 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb04c5e447cf84dc3a7a42c3c6d4f916, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchTarget: {fileID: 0}
-  switchTargetAudio: event:/sfx/environment/puzzlePiece/slidingStoneDoor
+  target: {fileID: 0}
   requiredAlpacas: 1
 --- !u!1001 &100100000
 Prefab:
@@ -98,6 +97,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.x
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Size.z
+      value: .0500000007
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

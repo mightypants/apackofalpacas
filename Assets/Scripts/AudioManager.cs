@@ -6,49 +6,42 @@ public class AudioManager : MonoBehaviour
 {
     private EventInstance ambience;
     private ParameterInstance windSpeedParam;
-    private float currWindSpeed;
-
+    private ParameterInstance windIntensityParam;
 
 	void Start() 
     {
         ambience = FMOD_StudioSystem.instance.GetEvent("event:/sfx/environment/ambience");
         ambience.getParameter("windSpeed", out windSpeedParam);
+        ambience.getParameter("windIntensity", out windIntensityParam);
         windSpeedParam.setValue(0);
+        windIntensityParam.setValue(0);
         ambience.start();
-        Invoke("DelaySpeedVariation", 3);
-	}
-	
-	void Update()
-    {
-	    
+        StartCoroutine(VaryWindParam(windSpeedParam));
+        StartCoroutine(VaryWindParam(windIntensityParam));
 	}
 
-    IEnumerator VaryWindSpeed()
+    IEnumerator VaryWindParam(ParameterInstance param)
     {
+        float currValue;
+        param.getValue(out currValue);
+
         // random range is based on the current settings in FMOD
-        float newWindSpeed = Random.Range(0, 10);
-        float speedChange = Mathf.Abs(currWindSpeed - newWindSpeed);
+        float newValue = Random.Range(0, 10);
+        float amountOfChange = Mathf.Abs(currValue - newValue);
 
         // a larger change in speed should be applied over a longer period of time
-        float changeTime = speedChange * 3;
-        float delay = Random.Range(1, 2);
+        float changeTime = amountOfChange * 3;
         float elapsedTime = 0;
 
         while (elapsedTime < changeTime)
         {
-            currWindSpeed = Mathf.Lerp(currWindSpeed, newWindSpeed, (elapsedTime / changeTime));
-            windSpeedParam.setValue(currWindSpeed);
+            currValue = Mathf.Lerp(currValue, newValue, (elapsedTime / changeTime));
+            param.setValue(currValue);
             elapsedTime += Time.deltaTime;
 
             yield return null;
         }
 
-        Invoke("DelaySpeedVariation", delay);
-    }
-
-    void DelaySpeedVariation()
-    {
-        StartCoroutine(VaryWindSpeed());
-        Debug.Log("vary called");
+        StartCoroutine(VaryWindParam(param));
     }
 }
