@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using FMOD.Studio;
 
 public class Switch : MonoBehaviour 
 {
@@ -10,7 +11,6 @@ public class Switch : MonoBehaviour
     private bool isActivated;
     private string characterObjectTag = "Alpaca";   // tag switch searches for
     private int alpacasPresent;                     // the number of alpacas currently on the switch
-    
     
     void Start() 
     {
@@ -28,6 +28,7 @@ public class Switch : MonoBehaviour
             {
                 isActivated = true;
                 targetMover.NotifyActiveStatus(true);
+                FMOD_StudioSystem.instance.PlayOneShot("event:/sfx/environment/puzzlePiece/pressureSwitch", transform.position);
             }
         } 
     }

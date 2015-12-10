@@ -13,7 +13,6 @@ public class DoorLift : MonoBehaviour {
     private Vector3 openPosition;
     private Vector3 closedPosition;
     private EventInstance doorSlideAudio;
-    //public string doorAudio;                // the name (including path) of the FMOD sound effect the target will play 
     
     void Start () {
         currentActiveSwitches = 0;
@@ -40,6 +39,8 @@ public class DoorLift : MonoBehaviour {
 
     public IEnumerator RaiseDoor()
     {
+        yield return new WaitForSeconds(0.5f);
+
         doorSlideAudio.start();
 
         while (transform.position.y < openPosition.y - .2f)

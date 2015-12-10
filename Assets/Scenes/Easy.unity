@@ -506,6 +506,14 @@ Prefab:
       propertyPath: target
       value: 
       objectReference: {fileID: 721806869}
+    - target: {fileID: 6536076, guid: fbfb7571ce5f043b99cad506a0ca17a5, type: 2}
+      propertyPath: m_Size.x
+      value: .0500000007
+      objectReference: {fileID: 0}
+    - target: {fileID: 6536076, guid: fbfb7571ce5f043b99cad506a0ca17a5, type: 2}
+      propertyPath: m_Size.z
+      value: .0500000007
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fbfb7571ce5f043b99cad506a0ca17a5, type: 2}
   m_IsPrefabParent: 0
@@ -3675,7 +3683,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 493270, guid: adce606bd47c746d69b8241f91325460, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 79.5
+      value: 119.419998
       objectReference: {fileID: 0}
     - target: {fileID: 493270, guid: adce606bd47c746d69b8241f91325460, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3683,7 +3691,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 493270, guid: adce606bd47c746d69b8241f91325460, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 182.179993
+      value: 244.100006
       objectReference: {fileID: 0}
     - target: {fileID: 493270, guid: adce606bd47c746d69b8241f91325460, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4706,7 +4714,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: .642138839, g: .693750024, b: .816176474, a: 1}
-  m_Intensity: 1
+  m_Intensity: .519999981
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -11040,7 +11048,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 455908, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 79.5
+      value: 119.419998
       objectReference: {fileID: 0}
     - target: {fileID: 455908, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11048,7 +11056,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455908, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 186.179993
+      value: 248.100006
       objectReference: {fileID: 0}
     - target: {fileID: 455908, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
       propertyPath: m_LocalRotation.x
