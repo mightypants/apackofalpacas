@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PathAnimation : MonoBehaviour {
 
-    Transform[] pathSegments;
     ParticleSystem[] pathEffects;
 
 	void Start() 
@@ -13,9 +12,12 @@ public class PathAnimation : MonoBehaviour {
 	
     public void Animate()
     {
-        foreach (ParticleSystem p in pathEffects)
+        if (pathEffects.Length > 0)
         {
-            p.Play(true);
+            foreach (ParticleSystem p in pathEffects)
+            {
+                p.Play(true);
+            }
         }
     }
 }
