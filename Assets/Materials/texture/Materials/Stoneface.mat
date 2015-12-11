@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Cobblestone
+  m_Name: Stoneface
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _NORMALMAP
   m_LightmapFlags: 5
@@ -19,14 +19,14 @@ Material:
         first:
           name: _MainTex
         second:
-          m_Texture: {fileID: 2800000, guid: 19a8018ea1aafa54da49511450dd1bfa, type: 3}
+          m_Texture: {fileID: 2800000, guid: cfc9344f741dcef4cbd5fb8797e1deba, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
         first:
           name: _BumpMap
         second:
-          m_Texture: {fileID: 2800000, guid: 52e04d0cf75060845a322a5b8e05c913, type: 3}
+          m_Texture: {fileID: 2800000, guid: aa1faf91e92c75b49a92d88b4bba9770, type: 3}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
       data:
