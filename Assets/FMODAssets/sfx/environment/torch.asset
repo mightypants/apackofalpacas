@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e06c992c0c162f94a880e74e722cb286, type: 3}
-  m_Name: cageLift
+  m_Name: torch
   m_EditorClassIdentifier: 
-  path: event:/sfx/environment/puzzlePiece/cageLift
-  id: '{b0f67fa6-8085-4936-861f-267cd48eabcc}'
+  path: event:/sfx/environment/torch
+  id: '{e134ca6c-34ff-4717-80c5-a3ad4c8ffcfd}'
