@@ -160,7 +160,8 @@ Prefab:
       propertyPath: smooth
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11449450, guid: adce606bd47c746d69b8241f91325460, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: adce606bd47c746d69b8241f91325460, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1718274
@@ -2958,6 +2959,18 @@ BoxCollider:
 GameObject:
   m_PrefabParentObject: {fileID: 106198, guid: 51fbfa8a0c1d047e68e7953c7314e629, type: 2}
   m_PrefabInternal: {fileID: 731380141}
+--- !u!114 &374149992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 374149988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f8336b22d6d3af4da2712827e9ad333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pluginPaths: []
 --- !u!1 &414230321
 GameObject:
   m_ObjectHideFlags: 0
