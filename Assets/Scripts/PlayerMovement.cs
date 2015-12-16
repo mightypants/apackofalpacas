@@ -15,7 +15,6 @@ public class PlayerMovement : MonoBehaviour
     public GameObject summonTarget;
     public Text gemText;
     public static int gemCount;
-    public DoorLift addGems;
 
     private CharacterController characterController;
     private ParticleSystem characterParticles;
@@ -126,23 +125,6 @@ public class PlayerMovement : MonoBehaviour
 
                 // call the alpaca to the destination
                 alpacaMovement.MoveTowardTarget(destinationObj);
-            }
-        }
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Gemstone")) {
-            gemCount++;
-            other.gameObject.SetActive(false);
-            GemCounter(gemCount);
-        }
-        else if(other.gameObject.CompareTag("GemDoor")) {
-            DoorLift.AddGemsToDoor();
-            gemCount -= DoorLift.requiredGems;
-            if(gemCount < 0)
-            {
-                gemCount = 0;
             }
         }
     }
