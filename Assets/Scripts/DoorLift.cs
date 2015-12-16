@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 using FMOD.Studio;
+using System.Collections.Generic;
 
 public class DoorLift : MonoBehaviour {
 
     public float raiseHeight;
     public int requiredSwitches;
     public float speed;
+    public static int requiredGems;
+    public List<GameObject> doorGems;
 
     private int currentActiveSwitches;
     private int prevActiveSwitches;
     private Vector3 openPosition;
     private Vector3 closedPosition;
     private EventInstance doorSlideAudio;
-    
+
     void Start () {
         currentActiveSwitches = 0;
         prevActiveSwitches = 0;
@@ -22,6 +25,17 @@ public class DoorLift : MonoBehaviour {
         doorSlideAudio = FMOD_StudioSystem.instance.GetEvent("event:/sfx/environment/puzzlePiece/slidingStoneDoor");
         var attributes = FMOD.Studio.UnityUtil.to3DAttributes(this.transform.position);
         doorSlideAudio.set3DAttributes(attributes);
+
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "DoorGem")
+            {
+                doorGems.Add(child.gameObject);
+               // child.gameObject.setActive(false);    
+            }
+
+        }
+
     }
 
     void Update()
@@ -73,6 +87,21 @@ public class DoorLift : MonoBehaviour {
         {
             prevActiveSwitches = currentActiveSwitches;
             currentActiveSwitches--;
+        }
+    }
+
+    void OnTriggerEnter()
+    {
+       
+        AddGemsToDoor();
+    }
+
+    public static void AddGemsToDoor()
+    {
+        while(requiredGems > 0)
+        {
+       //     doorGems[requiredGems].SetActive(true);
+            requiredGems--;
         }
     }
 }

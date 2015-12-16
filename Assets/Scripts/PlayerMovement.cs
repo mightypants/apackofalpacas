@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using FMOD.Studio;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -12,19 +13,24 @@ public class PlayerMovement : MonoBehaviour
     public Transform cameraTransform;
     public float gravity = 9.8f;
     public GameObject summonTarget;
-    
+    public Text gemText;
+    public static int gemCount;
+    public DoorLift addGems;
+
     private CharacterController characterController;
     private ParticleSystem characterParticles;
     private EventInstance fluteCall1;
     private EventInstance fluteCall2;
     private float vertSpeed;
     
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
         characterParticles = GameObject.Find("Player/Flute Radius").GetComponent<ParticleSystem>();
         fluteCall1 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute1");
         fluteCall2 = FMOD_StudioSystem.instance.GetEvent("event:/sfx/player/flute2");
+        GemCounter(gemCount);
     }
 
     void Update()
@@ -121,6 +127,33 @@ public class PlayerMovement : MonoBehaviour
                 // call the alpaca to the destination
                 alpacaMovement.MoveTowardTarget(destinationObj);
             }
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Gemstone")) {
+            gemCount++;
+            other.gameObject.SetActive(false);
+            GemCounter(gemCount);
+        }
+        else if(other.gameObject.CompareTag("GemDoor")) {
+            DoorLift.AddGemsToDoor();
+            gemCount -= DoorLift.requiredGems;
+            if(gemCount < 0)
+            {
+                gemCount = 0;
+            }
+        }
+    }
+
+    public void GemCounter(int gems)
+    {
+        if (gems == 1) {
+            gemText.text = gems.ToString() + " Gem";
+        }
+        else {
+            gemText.text = gemCount.ToString() + " Gems";
         }
     }
 }
