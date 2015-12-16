@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using FMOD.Studio;
+using System.Collections.Generic;
 
 public class DoorLift : MonoBehaviour {
 
@@ -8,13 +9,13 @@ public class DoorLift : MonoBehaviour {
     public int requiredSwitches;
     public float speed;
     public static int requiredGems;
+    public List<GameObject> doorGems;
 
     private int currentActiveSwitches;
     private int prevActiveSwitches;
     private Vector3 openPosition;
     private Vector3 closedPosition;
     private EventInstance doorSlideAudio;
-    private static GameObject[] doorGems;
 
     void Start () {
         currentActiveSwitches = 0;
@@ -25,11 +26,16 @@ public class DoorLift : MonoBehaviour {
         var attributes = FMOD.Studio.UnityUtil.to3DAttributes(this.transform.position);
         doorSlideAudio.set3DAttributes(attributes);
 
-        for (int i = 0; i < requiredGems; i++) {
-            doorGems[i] = GameObject.FindWithTag("DoorGem").gameObject;
-            doorGems[i].SetActive(false);
+        foreach (Transform child in transform)
+        {
+            if (child.tag == "DoorGem")
+            {
+                doorGems.Add(child.gameObject);
+               // child.gameObject.setActive(false);    
+            }
+
         }
-        
+
     }
 
     void Update()
@@ -84,11 +90,17 @@ public class DoorLift : MonoBehaviour {
         }
     }
 
+    void OnTriggerEnter()
+    {
+       
+        AddGemsToDoor();
+    }
+
     public static void AddGemsToDoor()
     {
         while(requiredGems > 0)
         {
-            doorGems[requiredGems].SetActive(true);
+       //     doorGems[requiredGems].SetActive(true);
             requiredGems--;
         }
     }
