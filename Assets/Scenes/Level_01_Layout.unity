@@ -14,10 +14,10 @@ SceneSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 6
-  m_Fog: 0
+  m_Fog: 1
   m_FogColor: {r: .5, g: .5, b: .5, a: 1}
   m_FogMode: 3
-  m_FogDensity: .00999999978
+  m_FogDensity: .00499999989
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: .211999997, g: .226999998, b: .259000003, a: 1}
@@ -973,7 +973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &63407065
 Light:
   m_ObjectHideFlags: 0
@@ -6143,38 +6143,6 @@ Prefab:
     - target: {fileID: 401424, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
       propertyPath: m_RootOrder
       value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
-      propertyPath: SubModule.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
-      propertyPath: SubModule.subEmitterDeath
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].value
-      value: .32819432
-      objectReference: {fileID: 0}
-    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].time
-      value: .631161451
-      objectReference: {fileID: 0}
-    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
-      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
-      value: .455147743
-      objectReference: {fileID: 0}
-    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 2.20000005
-      objectReference: {fileID: 0}
-    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
-      propertyPath: ClampVelocityModule.magnitude.maxCurve.m_Curve.Array.data[1].time
-      value: .649660826
       objectReference: {fileID: 0}
     - target: {fileID: 150150, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
       propertyPath: m_IsActive

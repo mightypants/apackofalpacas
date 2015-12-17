@@ -210,7 +210,7 @@ ParticleSystem:
   InitialModule:
     enabled: 1
     startLifetime:
-      scalar: 2.5
+      scalar: 2.20000005
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -510,12 +510,12 @@ ParticleSystem:
           outSlope: 0
           tangentMode: 0
         - time: .49999997
-          value: .513513505
+          value: .455147743
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: .762589991
-          value: .227027029
+        - time: .631161451
+          value: .32819432
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -1028,7 +1028,7 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - time: .852517962
+        - time: .649660826
           value: 0
           inSlope: 0
           outSlope: 0
@@ -1244,7 +1244,7 @@ ParticleSystem:
     voxelSize: .5
     collisionMessages: 0
   SubModule:
-    enabled: 0
+    enabled: 1
     subEmitterBirth: {fileID: 0}
     subEmitterBirth1: {fileID: 0}
     subEmitterCollision: {fileID: 0}
