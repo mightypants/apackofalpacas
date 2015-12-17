@@ -28,6 +28,7 @@ public class LeverActivation : MonoBehaviour
             {
                 isActivated = true;
                 targetMover.NotifyActiveStatus(true);
+				Debug.Log("lever active");
                 transform.position = activePosition;
                 transform.rotation = activeRotation;
                 FMOD_StudioSystem.instance.PlayOneShot("event:/sfx/environment/puzzlePiece/pressureSwitch", transform.position);

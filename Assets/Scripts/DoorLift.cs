@@ -66,7 +66,9 @@ public class DoorLift : MonoBehaviour {
 
     public void NotifyActiveStatus(bool active)
     {
-        if (active)
+		Debug.Log("notify called with status " + active);
+
+		if (active)
         {
             prevActiveSwitches = currentActiveSwitches;
             currentActiveSwitches++;
