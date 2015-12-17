@@ -11,5 +11,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06c992c0c162f94a880e74e722cb286, type: 3}
   m_Name: pressureSwitch
   m_EditorClassIdentifier: 
-  path: event:/sfx/environment/puzzlePiece/pressureSwitch
+  path: event:/sfx/environment/puzzlePiece/stoneImpact
   id: '{c0c5332e-98ef-442b-9373-778ae5755afa}'

@@ -80,7 +80,6 @@ public class AlpacaMovement : MonoBehaviour
         var attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
         alpacaHum.set3DAttributes(attributes);
         alpacaHum.start();
-        alpacaHum.release();
     }
 
     public void ToggleNavAgent()

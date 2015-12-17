@@ -4,17 +4,22 @@ using FMOD.Studio;
 
 public class AudioManager : MonoBehaviour 
 {
+    private EventInstance music;
     private EventInstance ambience;
     private ParameterInstance windSpeedParam;
     private ParameterInstance windIntensityParam;
 
+
 	void Start() 
     {
+        music = FMOD_StudioSystem.instance.GetEvent("event:/music/main");
         ambience = FMOD_StudioSystem.instance.GetEvent("event:/sfx/environment/ambience");
         ambience.getParameter("windSpeed", out windSpeedParam);
         ambience.getParameter("windIntensity", out windIntensityParam);
         windSpeedParam.setValue(0);
         windIntensityParam.setValue(0);
+
+        music.start();
         ambience.start();
         StartCoroutine(VaryWindParam(windSpeedParam));
         StartCoroutine(VaryWindParam(windIntensityParam));
