@@ -2632,6 +2632,14 @@ Prefab:
       propertyPath: m_Name
       value: ScaleEnd 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6469608, guid: 6c25adce82cf549abac2c37f2707dc0b, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430418, guid: 6c25adce82cf549abac2c37f2707dc0b, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c25adce82cf549abac2c37f2707dc0b, type: 2}
   m_IsPrefabParent: 0
@@ -6135,6 +6143,42 @@ Prefab:
     - target: {fileID: 401424, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
       propertyPath: m_RootOrder
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
+      propertyPath: SubModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
+      propertyPath: SubModule.subEmitterDeath
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].value
+      value: .32819432
+      objectReference: {fileID: 0}
+    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[2].time
+      value: .631161451
+      objectReference: {fileID: 0}
+    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: .455147743
+      objectReference: {fileID: 0}
+    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 2.20000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 19881690, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
+      propertyPath: ClampVelocityModule.magnitude.maxCurve.m_Curve.Array.data[1].time
+      value: .649660826
+      objectReference: {fileID: 0}
+    - target: {fileID: 150150, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
@@ -17805,7 +17849,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 401424, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 111940, guid: 5f5dac96b73a3458c85e582765d38984, type: 2}
       propertyPath: m_Name
@@ -18136,6 +18180,14 @@ Prefab:
     - target: {fileID: 2355794, guid: 6c25adce82cf549abac2c37f2707dc0b, type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6469608, guid: 6c25adce82cf549abac2c37f2707dc0b, type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6430418, guid: 6c25adce82cf549abac2c37f2707dc0b, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c25adce82cf549abac2c37f2707dc0b, type: 2}
