@@ -76,11 +76,17 @@ public class AlpacaMovement : MonoBehaviour
         targetPos = targetObj.transform.position;
         nav.SetDestination(targetPos);
 
-        // set up and play hum sound
-        var attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
-        alpacaHum.set3DAttributes(attributes);
-        alpacaHum.start();
+		float audioDelay = Random.Range(0, 1.7f);
+		Invoke("PlayAudio", audioDelay);
     }
+
+	void PlayAudio()
+	{
+		// set up and play hum sound
+		var attributes = FMOD.Studio.UnityUtil.to3DAttributes(transform.position);
+		alpacaHum.set3DAttributes(attributes);
+		alpacaHum.start();
+	}
 
     public void ToggleNavAgent()
     {
