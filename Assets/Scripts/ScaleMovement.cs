@@ -61,7 +61,7 @@ public class ScaleMovement : MonoBehaviour {
         float targetOffset;
         targetOffset = 0.1f;
 
-        //FMOD_StudioSystem.instance.PlayOneShot(movementAudio, transform.position);
+        FMOD_StudioSystem.instance.PlayOneShot(movementAudio, transform.position);
 
         if (movingUp)
         {

@@ -19,10 +19,11 @@ public class AudioManager : MonoBehaviour
         windSpeedParam.setValue(0);
         windIntensityParam.setValue(0);
 
-        music.start();
-        ambience.start();
-        StartCoroutine(VaryWindParam(windSpeedParam));
-        StartCoroutine(VaryWindParam(windIntensityParam));
+		ambience.start();
+		StartCoroutine(VaryWindParam(windSpeedParam));
+		StartCoroutine(VaryWindParam(windIntensityParam));
+
+		Invoke("PlayMusic", 1.3f);
 	}
 
     IEnumerator VaryWindParam(ParameterInstance param)
@@ -49,4 +50,10 @@ public class AudioManager : MonoBehaviour
 
         StartCoroutine(VaryWindParam(param));
     }
+
+	void PlayMusic()
+	{
+		music.start();
+
+	}
 }
