@@ -11,6 +11,7 @@ GameObject:
   - 33: {fileID: 3374338}
   - 23: {fileID: 2377854}
   - 114: {fileID: 11481702}
+  - 135: {fileID: 13596494}
   m_Layer: 0
   m_Name: torch
   m_TagString: Untagged
@@ -74,8 +75,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 111940}
-  m_LocalRotation: {x: -.704547524, y: .0601065829, z: -.0601065829, w: .704547524}
-  m_LocalPosition: {x: -1.62800002, y: 8.0369997, z: 4.0999999}
+  m_LocalRotation: {x: .0601065494, y: -.704547524, z: -.704547584, w: .0601063408}
+  m_LocalPosition: {x: 1.88100004, y: 8.0369997, z: 15.46}
   m_LocalScale: {x: .75, y: 1, z: .5}
   m_Children:
   - {fileID: 479754}
@@ -100,8 +101,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150150}
-  m_LocalRotation: {x: .0669029728, y: -.0401531979, z: -.0669524595, w: .994700551}
-  m_LocalPosition: {x: -.0700000003, y: 0, z: .600000024}
+  m_LocalRotation: {x: -.0724096671, y: .125496104, z: .0609541833, w: -.987568855}
+  m_LocalPosition: {x: 1.47000003, y: .170000002, z: -2.0999999}
   m_LocalScale: {x: 1.35246229, y: 1.7633276, z: 1.21754336}
   m_Children: []
   m_Father: {fileID: 401424}
@@ -159,7 +160,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 6
   m_Type: 0
-  m_Color: {r: 1, g: .902028382, b: .691176474, a: 1}
+  m_Color: {r: .897058845, g: .656417787, b: .138516471, a: 1}
   m_Intensity: 1.19000006
   m_Range: 15
   m_SpotAngle: 54.7000008
@@ -177,7 +178,7 @@ Light:
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_BounceIntensity: 3.05999994
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -193,6 +194,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f78ffc6c5fc9c4855a543c90e30fe16e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!135 &13596494
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 111940}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 50
+  m_Center: {x: 2.38418579e-07, y: 0, z: .383731276}
 --- !u!198 &19881690
 ParticleSystem:
   m_ObjectHideFlags: 1
@@ -205,7 +218,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
@@ -1263,7 +1276,7 @@ ParticleSystem:
   randomSeed: 0
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   moveWithTransform: 1
   InitialModule:
     enabled: 1
